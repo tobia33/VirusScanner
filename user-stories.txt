@@ -1,28 +1,42 @@
 NON REGISTRATO
-  - registrarti con user e password
-  - registrarti con github
-  - login con user e password
-  - login con github
+
+    # operazioni user
+        - registrarti con user e password
+        - registrarti con github
+        - login con user e password
+        - login con github
+
+    # operazioni file
+        - fare upload e scan di singolo file e far vedere il report
+        - cercare un hash e il suo report
+        - fare scan di URL e far vedere il report
+
 
 REGISTRATO
-  - fare upload e scan file con VirusTotal
-  - fare upload e scan file di file grosso con VirusTotal
-  - lista di file uploadati organizzati tipo "bacheca"
-  - possibilita' di fare re-scan su file in "bacheca"
-  - vedere commenti di file su cui hai fatto scan
-  - possibilita' di rinominare file in "bacheca"
-  - vedere i voti di un file su cui hai fatto scan
-  - vedere data di ultimo re-scan su file in "bacheca"
-  - rimuovere da "bacheca" file di cui hai fatto scan
-  - pulsante che fa un re-scan all files nella "bacheca"
-  - possibilita' di scrivere delle note visibili solo all' utente su un file in "bacheca"
-  - bacheca ordinabile per [data, lessicografico, status]
-  - cerca file in "bacheca"
-  - cancella profilo
+
+    # operazioni file singoli
+        - fare upload e scan di singolo file grande e far vedere il report
+        - request re-scan di report
+        - vedere commenti di un report
+        - vedere i voti di un report
+        - salvare un report su drive
+        - fare load report da drive
+        - get a summary of all behavior reports for a file
+        - get a summary of all MITRE ATT&CK techniques observed in a file
+
+    # operazioni report di gruppo
+        - caricare un file contenente degli hash e ottenere reports degli hash (report di gruppo)
+        - possibilità di caricare un file di URL, o un file misto con URL e hash
+        - ordinare i reports di gruppo secondo score
+        - salvare reports di gruppo su google drive (cartella contenente singoli report)
+        - fare load di reports di gruppo da drive
+        - avere la possibilità di ispezionare i singoli report di gruppo (commenti, voti...)
+        - salvare singoli report di gruppo su drive
+        - fare load di singoli report di gruppo da drive
 
 ADMIN
+
   - remove users
-  - aggiungere commenti di file su cui hai fatto scan
-  - votare un file su cui hai fatto scan
-  - salvare report file da "bacheca" a drive
-  - salvare report file da drive a "bacheca"
+  - aggiungere commenti su reports
+  - aggiungere voto su reports
+
