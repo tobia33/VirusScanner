@@ -1,9 +1,0 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  contenuto: MyText
-  last_scan: 2023-05-19 16:33:40
-
-two:
-  contenuto: MyText
-  last_scan: 2023-05-19 16:33:40
