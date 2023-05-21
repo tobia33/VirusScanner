@@ -2,9 +2,9 @@ NON REGISTRATO
 
     # operazioni user
         - registrarti con user e password
-        - registrarti con github
+        - registrarti con google
         - login con user e password
-        - login con github
+        - login con google
 
     # operazioni file
         - fare upload e scan di singolo file e far vedere il report
