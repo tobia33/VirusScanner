@@ -1,0 +1,12 @@
+<h1>Binaries#new</h1>
+
+
+<%= form_with url: "/binaries", method: :post, multipart: true do |form| %>
+  <%= form.label :binary, "Input binary:" %>
+  <%= form.file_field :binary %>
+  <%= form.submit "Submit" %>
+<% end %>
+<p id="notice"><%= notice %></p>
+
+
+<p>Find me in app/views/binaries/new.html.erb</p>

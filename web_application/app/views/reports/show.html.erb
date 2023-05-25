@@ -1,0 +1,17 @@
+<h1>Reports#show</h1>
+<h3>HASH</h3>
+<%= @report.sha256 %>
+<h3>URL</h3>
+<%= @report.url %>
+<h3>CONTENT</h3>
+<%= @report.content %>
+<h3>COMMENTS</h3>
+<% @report.comments.each do |comment| %>
+    <%= comment.body %>
+<% end %>
+<h3>VOTES</h3>
+<% @report.votes.each do |vote| %>
+    <%= vote.verdict %>
+    <%= vote.value %>
+<% end %>
+<p>Find me in app/views/reports/show.html.erb</p>

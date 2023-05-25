@@ -1,0 +1,12 @@
+<h1>Urls#new</h1>
+
+<%= form_with url: "/urls", method: :post, multipart: true do |form| %>
+  <%= form.label :url, "Input url:" %>
+  <%= form.url_field :url %>
+  <%= form.submit "Submit" %>
+<% end %>
+
+<p id="notice"><%= notice %></p>
+
+
+<p>Find me in app/views/urls/new.html.erb</p>
