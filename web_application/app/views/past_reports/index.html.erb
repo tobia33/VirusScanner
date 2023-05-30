@@ -1,0 +1,25 @@
+<h1>PastReports#index</h1>
+
+<ul>
+  <% @single_reports.each do |past_report| %>
+    <li>
+    <a href="<%= report_path(past_report) %>">
+      <%= past_report.sha256 %>
+      <%= past_report.url %>
+      <%= past_report.created_at %>
+    </a>
+    </li>
+  <% end %>
+</ul>
+<ul>
+  <% @groups.each do |group| %>
+    <li>
+    <a href="<%= group_path(group) %>">
+      <%= group.file_name %>
+      <%= group.created_at %>
+    </a>
+    </li>
+  <% end %>
+</ul>
+<%= link_to "home", reports_path  %>
+<p>Find me in app/views/past_reports/index.html.erb</p>

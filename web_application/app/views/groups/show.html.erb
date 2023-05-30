@@ -1,0 +1,17 @@
+<h1>Groups#show</h1>
+
+<%= @group.file_name %>
+
+<ul>
+  <% @group.reports.each do |report| %>
+    <li>
+    <a href="<%= report_path(report) %>">
+      <%= report.sha256 %>
+      <%= report.url %>
+      <%= report.created_at %>
+    </a>
+    </li>
+  <% end %>
+</ul>
+<%= link_to "home", reports_path  %>
+<p>Find me in app/views/groups/show.html.erb</p>

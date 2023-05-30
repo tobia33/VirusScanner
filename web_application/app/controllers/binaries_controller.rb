@@ -25,6 +25,9 @@ class BinariesController < ApplicationController
     json_parsed = JSON.parse(response.read_body)
     file_id = json_parsed["data"]["id"]
 
+    # delete file locally
+    File.delete("public/#{uploaded_file.original_filename}") 
+
     # send file id and receive report
     url = URI("https://www.virustotal.com/api/v3/analyses/#{file_id}")
     http = Net::HTTP.new(url.host, url.port)
@@ -47,12 +50,12 @@ class BinariesController < ApplicationController
       
     sha256 = json_parsed["meta"]["file_info"]["sha256"]
     data = json_parsed["data"].to_s
-    
     # create report
     @report = Report.new(sha256: sha256, content: data)
 
     # save report to database
     if !@report.save
+      puts @report.errors.full_messages
       render :new, status: :unprocessable_entity
       return
     end

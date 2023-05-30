@@ -1,0 +1,10 @@
+<h1>Groups#new</h1>
+
+<%= form_with url: "/groups", method: :post, multipart: true do |form| %>
+  <%= form.label :group_file, "Input group file:" %>
+  <%= form.file_field :group_file %>
+  <%= form.submit "Submit" %>
+<% end %>
+<p id="notice"><%= notice %></p>
+<%= link_to "home", reports_path  %>
+<p>Find me in app/views/groups/new.html.erb</p>

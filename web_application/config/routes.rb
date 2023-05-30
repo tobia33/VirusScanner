@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
 
+
   root "reports#index"
 
+  resources :groups
+  resources :past_reports
   resources :hashes
   resources :urls
   resources :reports

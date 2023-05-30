@@ -10,9 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_25_150153) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_29_134224) do
   create_table "comments", force: :cascade do |t|
-    t.string "author"
     t.text "body"
     t.integer "report_id", null: false
     t.datetime "created_at", null: false
@@ -20,12 +19,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_150153) do
     t.index ["report_id"], name: "index_comments_on_report_id"
   end
 
+  create_table "groups", force: :cascade do |t|
+    t.string "file_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "reports", force: :cascade do |t|
     t.string "sha256"
     t.string "url"
     t.text "content"
+    t.integer "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_reports_on_group_id"
   end
 
   create_table "votes", force: :cascade do |t|
@@ -38,5 +45,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_150153) do
   end
 
   add_foreign_key "comments", "reports"
+  add_foreign_key "reports", "groups"
   add_foreign_key "votes", "reports"
 end

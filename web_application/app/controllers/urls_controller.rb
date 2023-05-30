@@ -55,6 +55,7 @@ class UrlsController < ApplicationController
 
     # save report to the database
     if !@report.save
+      puts @report.errors.full_messages
       render :new, status: :unprocessable_entity
       return
     end
