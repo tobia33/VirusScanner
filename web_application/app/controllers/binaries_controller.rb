@@ -22,12 +22,39 @@ class BinariesController < ApplicationController
     http.use_ssl = true
     
     response = http.request(request)
+    
+    # check if file is bigger than 32MB
+    if response.code == "413"
+      # file is bigger than 32 MB
+
+      # get url to upload the big file
+      url = URI("https://www.virustotal.com/api/v3/files/upload_url")
+
+      http = Net::HTTP.new(url.host, url.port)
+      http.use_ssl = true
+
+      request = Net::HTTP::Get.new(url)
+      request["accept"] = 'application/json'
+      request["x-apikey"] = '06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
+
+      response = http.request(request)
+      json_parsed = JSON.parse(response.read_body)
+      big_file_url = json_parsed["data"]
+
+      # upload file to big file url
+      uri = URI(big_file_url)
+      request = Net::HTTP::Post::Multipart.new uri.request_uri, "file" => UploadIO.new("public/#{uploaded_file.original_filename}", "application/octet-stream")
+      request["accept"] = 'application/json'
+      request["x-apikey"] = '06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
+      http = Net::HTTP.new(uri.host, uri.port)
+      http.use_ssl = true
+
+      response = http.request(request)
+    end
     json_parsed = JSON.parse(response.read_body)
     file_id = json_parsed["data"]["id"]
 
-    # delete file locally
-    File.delete("public/#{uploaded_file.original_filename}") 
-
+    
     # send file id and receive report
     url = URI("https://www.virustotal.com/api/v3/analyses/#{file_id}")
     http = Net::HTTP.new(url.host, url.port)
@@ -39,7 +66,7 @@ class BinariesController < ApplicationController
     response = http.request(request)
     json_parsed = JSON.parse(response.read_body)
     status = json_parsed["data"]["attributes"]["status"]
-
+    
     # wait for the request to be processed by VirusTotal
     while status == "queued"
       sleep(10)
@@ -47,12 +74,16 @@ class BinariesController < ApplicationController
       json_parsed = JSON.parse(response.read_body)
       status = json_parsed["data"]["attributes"]["status"]
     end 
-      
+    
     sha256 = json_parsed["meta"]["file_info"]["sha256"]
     data = json_parsed["data"].to_s
-    # create report
-    @report = Report.new(sha256: sha256, content: data)
 
+    # calculate score
+    score = json_parsed["data"]["attributes"]["stats"]["malicious"]
+
+    # create report
+    @report = Report.new(sha256: sha256, content: data, score: score)
+    
     # save report to database
     if !@report.save
       puts @report.errors.full_messages
@@ -70,12 +101,12 @@ class BinariesController < ApplicationController
     
     response = http.request(request)
     json_parsed = JSON.parse(response.read_body)
-
+    
     # for every comment of the report, add it to the database
     for comm in json_parsed["data"] do
       @report.comments.create(body: comm["attributes"]["text"])
     end
-
+    
     # send file hash and receive votes
     url = URI("https://www.virustotal.com/api/v3/files/#{sha256}/votes?limit=40")
     http = Net::HTTP.new(url.host, url.port)
@@ -83,18 +114,18 @@ class BinariesController < ApplicationController
     request = Net::HTTP::Get.new(url)
     request["accept"] = 'application/json'
     request["x-apikey"] = '06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
-
+    
     response = http.request(request)
     json_parsed = JSON.parse(response.read_body)
-        
+    
     # for every vote of the report, add it to the database
     for vot in json_parsed["data"] do
         @report.votes.create(verdict: vot["attributes"]["verdict"], value: vot["attributes"]["value"])
-    end
-
+      end
+    # delete file locally
+    File.delete("public/#{uploaded_file.original_filename}") 
     # redirect to report#show
     redirect_to @report
-    
   end
   
 end

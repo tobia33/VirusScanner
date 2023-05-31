@@ -2,10 +2,14 @@
 
 <%= @group.file_name %>
 
+<%= link_to "sort by score", group_path(@group, sort: "score")  %>
+<%= link_to "sort by date", group_path(@group, sort: "date")  %>
+
 <ul>
-  <% @group.reports.each do |report| %>
+  <% @sorted.each do |report| %>
     <li>
     <a href="<%= report_path(report) %>">
+      <%= report.score %>
       <%= report.sha256 %>
       <%= report.url %>
       <%= report.created_at %>

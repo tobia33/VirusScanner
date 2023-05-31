@@ -18,14 +18,14 @@ REGISTRATO
     [ ] get a summary of all behavior reports for a file
     [x] caricare un file contenente degli hash e ottenere reports degli hash (report di gruppo)
     [x] possibilità di caricare un file di URL, o un file misto con URL e hash
-    [ ] ordinare i reports di gruppo secondo score
+    [x] ordinare i reports di gruppo secondo score
     [ ] salvare reports di gruppo su google drive (cartella contenente singoli report)
     [ ] fare load di reports di gruppo da drive
     [x] avere la possibilità di ispezionare i singoli report di gruppo (commenti, voti...)
     [ ] salvare singoli report di gruppo su drive
     [ ] fare load di singoli report di gruppo da drive
     [x] possibilità di accedere alla cronologia delle operazioni fatte
-    [ ] possibilità di ordinare la cronologia per data, score
+    [x] possibilità di ordinare la cronologia per data, score
     [ ] rimuovi report da cronologia
 
 ADMIN 

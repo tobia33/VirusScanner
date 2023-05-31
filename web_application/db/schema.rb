@@ -29,6 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_29_134224) do
     t.string "sha256"
     t.string "url"
     t.text "content"
+    t.string "score"
     t.integer "group_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

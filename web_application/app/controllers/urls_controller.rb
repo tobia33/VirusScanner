@@ -50,8 +50,11 @@ class UrlsController < ApplicationController
     url = json_parsed["meta"]["url_info"]["url"]
     data = json_parsed["data"].to_s
     
+    # calculate score
+    score = json_parsed["data"]["attributes"]["stats"]["malicious"]
+    
     # create report
-    @report = Report.new(url: url, content: data)
+    @report = Report.new(url: url, content: data, score: score)
 
     # save report to the database
     if !@report.save

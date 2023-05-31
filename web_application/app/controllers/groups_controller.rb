@@ -70,8 +70,11 @@ class GroupsController < ApplicationController
         url = json_parsed["meta"]["url_info"]["url"]
         data = json_parsed["data"].to_s
         
+        # calculate score
+        score = json_parsed["data"]["attributes"]["stats"]["malicious"]
+        
         # create report
-        @report = @group.reports.create(url: url, content: data)
+        @report = @group.reports.create(url: url, content: data, score: score)
 
         # get file id
         file_id = json_parsed["meta"]["url_info"]["id"]
@@ -136,8 +139,11 @@ class GroupsController < ApplicationController
             sha256 = json_parsed["data"][0]["attributes"]["sha256"]
             data = json_parsed["data"][0].to_s
             
+            # calculate score
+            score = json_parsed["data"][0]["attributes"]["last_analysis_stats"]["malicious"]
+            
             # create report
-            @report = @group.reports.create(sha256: sha256, content: data)
+            @report = @group.reports.create(sha256: sha256, content: data, score: score)
 
             # send file hash and receive comments
             url = URI("https://www.virustotal.com/api/v3/files/#{sha256}/comments?limit=20")
@@ -188,5 +194,11 @@ class GroupsController < ApplicationController
   def show
     # find group given id
     @group = Group.find(params[:id])
+    @sorted = @group.reports.sort_by {|report| report.created_at}
+    if params["sort"]
+      if params["sort"] == "score"
+        @sorted = @group.reports.sort_by {|report| report.score}
+      end
+    end
   end
 end

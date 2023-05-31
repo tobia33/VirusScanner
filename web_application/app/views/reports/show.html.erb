@@ -1,7 +1,10 @@
 <h1>Reports#show</h1>
 <%= link_to "home", reports_path  %>
+  
 <h3>HASH</h3>
 <%= @report.sha256 %>
+<h3>SCORE</h3>
+<%= @report.score %>
 <h3>URL</h3>
 <%= @report.url %>
 <h3>CONTENT</h3>
@@ -15,4 +18,6 @@
     <%= vote.verdict %>
     <%= vote.value %>
 <% end %>
+
+
 <p>Find me in app/views/reports/show.html.erb</p>

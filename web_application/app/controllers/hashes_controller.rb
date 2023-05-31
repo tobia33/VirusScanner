@@ -25,9 +25,13 @@ class HashesController < ApplicationController
       else
         sha256 = json_parsed["data"][0]["attributes"]["sha256"]
         data = json_parsed["data"][0].to_s
+        #puts "#{json_parsed["data"][0]["attributes"]["last_analysis_stats"]}"
+
+        # calculate score
+        score = json_parsed["data"][0]["attributes"]["last_analysis_stats"]["malicious"]
         
         # create report
-        @report = Report.new(sha256: sha256, content: data)
+        @report = Report.new(sha256: sha256, content: data, score: score)
         
         # save report to database
         if !@report.save
