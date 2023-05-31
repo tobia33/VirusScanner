@@ -1,42 +1,36 @@
 NON REGISTRATO
-
-    # operazioni user
-        - registrarti con user e password
-        - registrarti con google
-        - login con user e password
-        - login con google
-
-    # operazioni file
-        - fare upload e scan di singolo file e far vedere il report
-        - cercare un hash e il suo report
-        - fare scan di URL e far vedere il report
-
+    [ ] registrarti con user e password
+    [ ] registrarti con google 
+    [x] fare upload e scan di singolo file e far vedere il report
+    [x] cercare un hash e far vedere il suo report
+    [x] fare scan di URL e far vedere il report
 
 REGISTRATO
+    [ ] login con google
+    [ ] login con user e password 
+    [x] fare upload e scan di singolo file  più grande di 32 MB e vedere il suo report
+    [ ] fare re-scan di report
+    [x] vedere commenti di un report
+    [x] vedere i voti di un report
+    [ ] salvare un report su drive
+    [ ] fare load report da drive
+    [ ] get a summary of all MITRE ATT&CK techniques observ [ ] ed in a file
+    [ ] get a summary of all behavior reports for a file
+    [x] caricare un file contenente degli hash e ottenere reports degli hash (report di gruppo)
+    [x] possibilità di caricare un file di URL, o un file misto con URL e hash
+    [ ] ordinare i reports di gruppo secondo score
+    [ ] salvare reports di gruppo su google drive (cartella contenente singoli report)
+    [ ] fare load di reports di gruppo da drive
+    [x] avere la possibilità di ispezionare i singoli report di gruppo (commenti, voti...)
+    [ ] salvare singoli report di gruppo su drive
+    [ ] fare load di singoli report di gruppo da drive
+    [x] possibilità di accedere alla cronologia delle operazioni fatte
+    [ ] possibilità di ordinare la cronologia per data, score
+    [ ] rimuovi report da cronologia
 
-    # operazioni file singoli
-        - fare upload e scan di singolo file grande e far vedere il report
-        - request re-scan di report
-        - vedere commenti di un report
-        - vedere i voti di un report
-        - salvare un report su drive
-        - fare load report da drive
-        - get a summary of all behavior reports for a file
-        - get a summary of all MITRE ATT&CK techniques observed in a file
-
-    # operazioni report di gruppo
-        - caricare un file contenente degli hash e ottenere reports degli hash (report di gruppo)
-        - possibilità di caricare un file di URL, o un file misto con URL e hash
-        - ordinare i reports di gruppo secondo score
-        - salvare reports di gruppo su google drive (cartella contenente singoli report)
-        - fare load di reports di gruppo da drive
-        - avere la possibilità di ispezionare i singoli report di gruppo (commenti, voti...)
-        - salvare singoli report di gruppo su drive
-        - fare load di singoli report di gruppo da drive
-
-ADMIN
-
-  - remove users
-  - aggiungere commenti su reports
-  - aggiungere voto su reports
-
+ADMIN 
+    [ ] remove user
+    [ ] ban user
+    [ ] unban user
+    [ ] limita operazioni utente
+    [ ] ripristina operazioni utente
