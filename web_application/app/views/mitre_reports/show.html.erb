@@ -1,0 +1,11 @@
+<h1>MitreReports#show</h1>
+<%= link_to "home", reports_path  %>
+
+<% if @mitre_report.any? %>
+    <%= @mitre_report %>
+<% else %>
+  <h3>Mirte report not found</h3>
+<% end %>
+
+
+<p>Find me in app/views/mitre_reports/show.html.erb</p>

@@ -1,6 +1,13 @@
 <h1>Reports#show</h1>
 <%= link_to "home", reports_path  %>
-  
+<% if @report.sha256%>
+    <%= link_to "mitre report", mitre_report_path(@report.sha256)  %>
+<% end %>
+
+<% if @report.sha256%>
+    <%= link_to "behavior report", behavior_report_path(@report.sha256)  %>
+<% end %>
+
 <h3>HASH</h3>
 <%= @report.sha256 %>
 <h3>SCORE</h3>

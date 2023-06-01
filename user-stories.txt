@@ -14,8 +14,8 @@ REGISTRATO
     [x] vedere i voti di un report
     [ ] salvare un report su drive
     [ ] fare load report da drive
-    [ ] get a summary of all MITRE ATT&CK techniques observ [ ] ed in a file
-    [ ] get a summary of all behavior reports for a file
+    [x] get a summary of all MITRE ATT&CK techniques observed in a file
+    [x] get a summary of all behavior reports for a file
     [x] caricare un file contenente degli hash e ottenere reports degli hash (report di gruppo)
     [x] possibilità di caricare un file di URL, o un file misto con URL e hash
     [x] ordinare i reports di gruppo secondo score
@@ -34,3 +34,5 @@ ADMIN
     [ ] unban user
     [ ] limita operazioni utente
     [ ] ripristina operazioni utente
+    [ ] aggiungere commento su report
+    [ ] aggiungere voto su report
