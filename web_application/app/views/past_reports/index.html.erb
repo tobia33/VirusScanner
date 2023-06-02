@@ -12,6 +12,10 @@
       <%= past_report.url %>
       <%= past_report.created_at %>
     </a>
+    <%= link_to "[ Delete ]", report_path(past_report), data: {
+                  turbo_method: :delete,
+                } %>
+    
     </li>
   <% end %>
 </ul>
@@ -22,6 +26,9 @@
       <%= group.file_name %>
       <%= group.created_at %>
     </a>
+      <%= link_to "[ Delete ]", group_path(group), data: {
+                    turbo_method: :delete,
+                  } %>
     </li>
   <% end %>
 </ul>

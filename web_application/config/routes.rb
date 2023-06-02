@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 
   root "reports#index"
 
+  resources :rescan_reports
   resources :behavior_reports
   resources :mitre_reports
   resources :groups

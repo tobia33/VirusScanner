@@ -21,4 +21,7 @@ class PastReportsController < ApplicationController
     @groups = Group.all           # poi mettere solo quelli di utente
     
   end
+
+
+
 end

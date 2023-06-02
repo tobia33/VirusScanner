@@ -8,7 +8,7 @@
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
   </head>
-
+  <%= javascript_include_tag "turbo", type: "module" %>
   <body>
     <%= yield %>
   </body>

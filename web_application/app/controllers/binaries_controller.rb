@@ -121,7 +121,7 @@ class BinariesController < ApplicationController
     # for every vote of the report, add it to the database
     for vot in json_parsed["data"] do
         @report.votes.create(verdict: vot["attributes"]["verdict"], value: vot["attributes"]["value"])
-      end
+    end
     # delete file locally
     File.delete("public/#{uploaded_file.original_filename}") 
     # redirect to report#show

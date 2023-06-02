@@ -190,7 +190,11 @@ class GroupsController < ApplicationController
     redirect_to @group
   
   end
-
+  def destroy
+    @group = Group.find(params[:id])
+    @group.destroy
+    redirect_to past_reports_path, status: :see_other
+  end
   def show
     # find group given id
     @group = Group.find(params[:id])

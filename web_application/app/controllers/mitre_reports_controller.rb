@@ -11,10 +11,6 @@ class MitreReportsController < ApplicationController
 
     response = http.request(request)
     json_parsed = JSON.parse(response.read_body)
-    if json_parsed["data"].any?
-      puts "sex"
-      
-    end
     @mitre_report = json_parsed["data"]
   end
 end
