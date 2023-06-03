@@ -1,8 +1,9 @@
 class RescanReportsController < ApplicationController
     def show
 
-        if params[:id].match("^http")
-            url = URI("https://www.virustotal.com/api/v3/urls/#{params[:id]}/analyse")
+        id = Base64.decode64(params[:id])
+        if id.match("^http")
+            url = URI("https://www.virustotal.com/api/v3/urls")
 
             http = Net::HTTP.new(url.host, url.port)
             http.use_ssl = true
@@ -10,10 +11,11 @@ class RescanReportsController < ApplicationController
             request = Net::HTTP::Post.new(url)
             request["accept"] = 'application/json'
             request["x-apikey"] = '06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
+            request["content-type"] = 'application/x-www-form-urlencoded'
+            request.body = "url=#{id}"
 
             response = http.request(request)
             json_parsed = JSON.parse(response.read_body)
-
             file_id = json_parsed["data"]["id"]                
                 
             # send file id and receive report
@@ -37,13 +39,11 @@ class RescanReportsController < ApplicationController
             end
 
             url = json_parsed["meta"]["url_info"]["url"]
-            data = json_parsed["data"].to_s
-            
             # calculate score
             score = json_parsed["data"]["attributes"]["stats"]["malicious"]
             
             # create report
-            @report = Report.new(url: url, content: data, score: score)
+            @report = Report.new(url: url, content: response.read_body, score: score)
 
             # save report to the database
             if !@report.save
@@ -94,7 +94,7 @@ class RescanReportsController < ApplicationController
            
 
         else
-            url = URI("https://www.virustotal.com/api/v3/files/#{params[:id]}/analyse")
+            url = URI("https://www.virustotal.com/api/v3/files/#{id}/analyse")
 
             http = Net::HTTP.new(url.host, url.port)
             http.use_ssl = true
@@ -130,13 +130,12 @@ class RescanReportsController < ApplicationController
             end 
             
             sha256 = json_parsed["meta"]["file_info"]["sha256"]
-            data = json_parsed["data"].to_s
 
             # calculate score
             score = json_parsed["data"]["attributes"]["stats"]["malicious"]
 
             # create report
-            @report = Report.new(sha256: sha256, content: data, score: score)
+            @report = Report.new(sha256: sha256, content: response.read_body, score: score)
             
             # save report to database
             if !@report.save

@@ -24,14 +24,12 @@ class HashesController < ApplicationController
         redirect_to new_hash_path, flash: {notice: "hash incorrect or not present in the database"}
       else
         sha256 = json_parsed["data"][0]["attributes"]["sha256"]
-        data = json_parsed["data"][0].to_s
-        #puts "#{json_parsed["data"][0]["attributes"]["last_analysis_stats"]}"
 
         # calculate score
         score = json_parsed["data"][0]["attributes"]["last_analysis_stats"]["malicious"]
         
         # create report
-        @report = Report.new(sha256: sha256, content: data, score: score)
+        @report = Report.new(sha256: sha256, content: response.read_body, score: score)
         
         # save report to database
         if !@report.save

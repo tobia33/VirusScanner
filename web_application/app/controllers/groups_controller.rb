@@ -68,13 +68,12 @@ class GroupsController < ApplicationController
         end
 
         url = json_parsed["meta"]["url_info"]["url"]
-        data = json_parsed["data"].to_s
         
         # calculate score
         score = json_parsed["data"]["attributes"]["stats"]["malicious"]
         
         # create report
-        @report = @group.reports.create(url: url, content: data, score: score)
+        @report = @group.reports.create(url: url, content: response.read_body, score: score)
 
         # get file id
         file_id = json_parsed["meta"]["url_info"]["id"]
@@ -137,13 +136,12 @@ class GroupsController < ApplicationController
             next
           else
             sha256 = json_parsed["data"][0]["attributes"]["sha256"]
-            data = json_parsed["data"][0].to_s
             
             # calculate score
             score = json_parsed["data"][0]["attributes"]["last_analysis_stats"]["malicious"]
             
             # create report
-            @report = @group.reports.create(sha256: sha256, content: data, score: score)
+            @report = @group.reports.create(sha256: sha256, content: response.read_body, score: score)
 
             # send file hash and receive comments
             url = URI("https://www.virustotal.com/api/v3/files/#{sha256}/comments?limit=20")

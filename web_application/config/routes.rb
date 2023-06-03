@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   root "reports#index"
 
+  #get 'rescan_reports/:id', to: 'rescan_reports#show'
+  
   resources :rescan_reports
   resources :behavior_reports
   resources :mitre_reports

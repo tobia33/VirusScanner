@@ -9,7 +9,7 @@ REGISTRATO
     [ ] login con google
     [ ] login con user e password 
     [x] fare upload e scan di singolo file  più grande di 32 MB e vedere il suo report
-    [ ] fare re-scan di report
+    [x] fare re-scan di report
     [x] vedere commenti di un report
     [x] vedere i voti di un report
     [ ] salvare un report su drive

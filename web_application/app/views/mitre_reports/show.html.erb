@@ -1,8 +1,21 @@
 <h1>MitreReports#show</h1>
 <%= link_to "home", reports_path  %>
-
-<% if @mitre_report.any? %>
-    <%= @mitre_report %>
+<%mitre = JSON.parse(@mitre_report)%>
+<% if mitre["data"].any? %>
+    <ul>
+    <% mitre["data"].each do |box| %>
+      <li>
+        <h3><%=box[0] %></h3>
+        <p>
+        <ul>
+          <% box[1]["tactics"].each do |box2| %>
+            <li><%=box2["description"]%></li>
+          <%end%>
+        </ul>
+        </p>
+      </li>
+    <%end%>
+    </ul>
 <% else %>
   <h3>Mirte report not found</h3>
 <% end %>

@@ -1,11 +1,15 @@
 <h1>Reports#show</h1>
+
 <%= link_to "home", reports_path  %>
+
 <% if @report.sha256%>
-    <%= link_to "rescan report", rescan_report_path(@report.sha256)  %>
+    <% sha256 = Base64.encode64(@report.sha256)%>
+    <%= link_to "rescan report", rescan_report_path(sha256)  %>
 <% end %>
 
 <% if @report.url%>
-    <%= link_to "rescan report", rescan_report_path(@report.url)  %>
+    <% url = Base64.encode64(@report.url)%>
+    <%= link_to "rescan report", rescan_report_path(url)  %>
 <% end %>
 
 <% if @report.sha256%>
@@ -24,17 +28,53 @@
 <%= @report.score %>
 <h3>URL</h3>
 <%= @report.url %>
+
+
 <h3>CONTENT</h3>
-<%= @report.content %>
-<h3>COMMENTS</h3>
-<% @report.comments.each do |comment| %>
-    <%= comment.body %>
+<%
+json_parsed = JSON.parse(@report.content)
+begin
+    content = json_parsed["data"]["attributes"]["results"]
+    url="true"
+rescue
+    content = json_parsed["data"][0]["attributes"]["last_analysis_results"]
+    url="false"
+end
+%>
+<% if url=="true"%>
+    <ul>
+    <% content.each do |result| %>
+        <li>
+        <%= result[0]%> : <%= result[1]["category"] %>, <%= result[1]["result"] %>, <%= result[1]["method"] %>
+        </li>
+    <%end%>
+    </ul>
+<%else%>
+<ul>
+    <% content.each do |result| %>
+        <li>
+        <%= result[0]%> : <%= result[1]["category"] %>, <%= result[1]["result"] %>, <%= result[1]["method"] %>
+        </li>
+    <%end%>
+    </ul>
 <% end %>
+<h3>COMMENTS</h3>
+<ul>
+<% @report.comments.each do |comment| %>
+    <li>
+    <%= comment.body %>
+    </li>
+<% end %>
+</ul>
+
 <h3>VOTES</h3>
+<ul>
 <% @report.votes.each do |vote| %>
+    <li>
     <%= vote.verdict %>
     <%= vote.value %>
+    </li>
 <% end %>
-
+</ul>
 
 <p>Find me in app/views/reports/show.html.erb</p>

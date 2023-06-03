@@ -10,7 +10,6 @@ class BehaviorReportsController < ApplicationController
     request["x-apikey"] = '06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
 
     response = http.request(request)
-    json_parsed = JSON.parse(response.read_body)
-    @behavior_report = json_parsed["data"]
+    @behavior_report = response.read_body
   end
 end

@@ -76,13 +76,12 @@ class BinariesController < ApplicationController
     end 
     
     sha256 = json_parsed["meta"]["file_info"]["sha256"]
-    data = json_parsed["data"].to_s
 
     # calculate score
     score = json_parsed["data"]["attributes"]["stats"]["malicious"]
 
     # create report
-    @report = Report.new(sha256: sha256, content: data, score: score)
+    @report = Report.new(sha256: sha256, content: response.read_body, score: score)
     
     # save report to database
     if !@report.save
