@@ -11,5 +11,9 @@
   <%= javascript_include_tag "turbo", type: "module" %>
   <body>
     <%= yield %>
+    <% if user_signed_in? %>
+      Logged in as <%= current_user.email%> 
+      <%= button_to "Log out", destroy_user_session_path, method: :delete %>
+    <% end %>
   </body>
 </html>
