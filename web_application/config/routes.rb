@@ -4,10 +4,13 @@ Rails.application.routes.draw do
     :registrations => "users/registrations", 
     :passwords => "users/passwords", 
     :confirmations => "users/confirmations", 
-    :unlocks => "users/unlocks"
+    :unlocks => "users/unlocks",
+    :omniauth_callbacks => "users/omniauth_callbacks"
   } do
     get "/login" => "devise/sessions#new"
     get "/logout" => "devise/sessions#destroy"
+    get "/auth/:provider/callback" => "devise/sessions#create"
+    get "session/destroy" => "devise/sessions#destroy"
   end
 
 
