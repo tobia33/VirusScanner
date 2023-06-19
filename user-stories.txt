@@ -1,13 +1,13 @@
 NON REGISTRATO
-    [ ] registrarti con user e password
-    [ ] registrarti con google 
+    [x] registrarti con user e password
+    [x] registrarti con google 
     [x] fare upload e scan di singolo file e far vedere il report
     [x] cercare un hash e far vedere il suo report
     [x] fare scan di URL e far vedere il report
 
 REGISTRATO
-    [ ] login con google
-    [ ] login con user e password 
+    [x] login con google
+    [x] login con user e password 
     [x] fare upload e scan di singolo file  più grande di 32 MB e vedere il suo report
     [x] fare re-scan di report
     [x] vedere commenti di un report
