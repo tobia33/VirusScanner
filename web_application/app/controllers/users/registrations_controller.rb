@@ -13,14 +13,15 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def create
     @user=User.where(["username == ?",params[:user][:username]])
     if(@user!=[])
-      return 
+      redirect_to new_user_registration_path, notice: "Username already exist" 
+      return
     end
     @user = User.new(user_params)
     if @user.save
       session[:user_id] = @user.id
       redirect_to root_path, flash: { success: 'Registration successfully' }
     else
-      render :new
+      redirect_to new_user_registration_path, notice: "Email already exist"
     end
   end
 
