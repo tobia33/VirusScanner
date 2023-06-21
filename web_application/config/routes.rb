@@ -13,6 +13,8 @@ Rails.application.routes.draw do
     get "session/destroy" => "devise/sessions#destroy"
   end
 
+  get "users", to: "users#index"
+  delete "users/:id", to: "users#destroy"
 
   root "reports#index"
 
@@ -27,6 +29,7 @@ Rails.application.routes.draw do
   resources :urls
   resources :reports
   resources :binaries
+  resources :users
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

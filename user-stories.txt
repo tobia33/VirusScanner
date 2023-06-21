@@ -1,12 +1,14 @@
 NON REGISTRATO
     [x] registrarti con user e password
-    [x] registrarti con google 
+    [x] verifica email di registrazione
+    [x] registrarti con google via Oauth
     [x] fare upload e scan di singolo file e far vedere il report
     [x] cercare un hash e far vedere il suo report
     [x] fare scan di URL e far vedere il report
+    [x] recupero password //aggiunta il 21/06/2023
 
 REGISTRATO
-    [x] login con google
+    [x] login con google via Oauth
     [x] login con user e password 
     [x] fare upload e scan di singolo file  più grande di 32 MB e vedere il suo report
     [x] fare re-scan di report
@@ -27,6 +29,7 @@ REGISTRATO
     [x] possibilità di accedere alla cronologia delle operazioni fatte
     [x] possibilità di ordinare la cronologia per data, score
     [x] rimuovi report da cronologia
+    [x] un utente può cancellare il proprio account //aggiunta il 21/06/2023
 
 ADMIN 
     [ ] remove user
