@@ -1,0 +1,24 @@
+Matrice di controllo degli accessi per VirusScanner ver.0.1 Rbac1
+
+                        non registrato      							           	registrato		                         						admin
+
+
+user										    create								                   	destroy(self)		              	      destroy, ban, unban,limit, unlimit
+
+scan file<32MB					  execute,read			                   	destroy, upload, download														                   		(* upload/download da/su google drive)
+
+scan hash								  execute,read					                destroy, upload, download
+
+scan report								execute,read					                destroy, upload,download
+
+scan file>32MB																            destroy, execute,read,upload,download
+
+re-scan report																            destroy,execute,read,upload,download
+
+comments																				                          read						                        		write, destroy
+
+report di gruppo																             execute, read,upload, download
+
+cronologia operazioni																                 read, destroy
+
+voto report																				                        read                             								write
