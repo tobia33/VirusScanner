@@ -32,7 +32,7 @@ REGISTRATO
     [x] un utente può cancellare il proprio account //aggiunta il 21/06/2023
 
 ADMIN 
-    [ ] remove user
+    [x] remove user
     [ ] ban user
     [ ] unban user
     [ ] limita operazioni utente

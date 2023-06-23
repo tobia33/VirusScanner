@@ -17,6 +17,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
       return
     end
     @user = User.new(user_params)
+    if params[:user][:email].include?("uniroma1.it")
+      @user.roles!(:admin)
+    else
+      @user.roles!(:normaluser)
+    end
     if @user.save
       session[:user_id] = @user.id
       redirect_to root_path, flash: { success: 'Registration successfully' }

@@ -7,7 +7,24 @@ class User < ApplicationRecord
          :omniauthable, omniauth_providers: [:google_oauth2],
          :authentication_keys => [:username]
 
-  acts_as_user :roles => [ :normaluser, :admin ]
+  #acts_as_user :roles => [ :normaluser, :admin ]
+
+  ROLES = %i[admin normaluser]
+
+  def roles!(roles)
+    roles = [*roles].map { |r| r.to_sym }
+    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
+  end
+
+  def roles
+    ROLES.reject do |r|
+      ((roles_mask.to_i || 0) & 2**ROLES.index(r)).zero?
+    end
+  end
+
+  def has_role?(role)
+    self.roles.include?(role)
+  end
 
   def self.create_from_provider_data(provider_data)
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create  do |user|
