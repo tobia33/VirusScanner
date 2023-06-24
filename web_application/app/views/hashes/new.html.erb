@@ -2,7 +2,7 @@
 
 <%= form_with url: "/hashes", method: :post, multipart: true do |form| %>
   <%= form.label :input_hash, "Input hash:" %>
-  <%= form.search_field :input_hash, requested: true %>
+  <%= form.search_field :input_hash, required: true %>
   <%= form.submit "Submit" %>
 <% end %>
 <%= link_to "home", reports_path  %>
