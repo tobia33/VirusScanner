@@ -5,6 +5,13 @@
     <% User.all.each do |u| %>
       <li>
         <%= u.email %> <%= button_to "Delete", user_path(u), method: :delete, data: { confirm: "Really delete this user?" } %>
+        <% if u.access_locked? %>
+          <strong> Bannato </strong>
+          <%= button_to 'UnBan', ban_user_path(u), method: :patch %>
+        <% else %>
+          <%= button_to 'Ban', ban_user_path(u), method: :patch %>
+          <strong> Non bannato </strong>
+        <% end %>
       </li>
     <% end %>
   <% end %>

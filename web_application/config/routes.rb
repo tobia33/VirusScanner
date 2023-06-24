@@ -16,8 +16,6 @@ Rails.application.routes.draw do
   get "users", to: "users#index"
   delete "users/:id", to: "users#destroy"
 
-  root "reports#index"
-
   #get 'rescan_reports/:id', to: 'rescan_reports#show'
   
   resources :rescan_reports
@@ -30,8 +28,15 @@ Rails.application.routes.draw do
   resources :reports
   resources :binaries
   resources :users
+
+  resources :users, only: [:index] do
+    member do
+      patch :ban
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   # root "articles#index"
+  root "reports#index"
 end
