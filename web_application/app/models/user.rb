@@ -9,11 +9,16 @@ class User < ApplicationRecord
 
   #acts_as_user :roles => [ :normaluser, :admin ]
 
-  ROLES = %i[admin normaluser]
+  ROLES = %i[admin normaluser not_rescan not_votes not_comments not_mitre not_behavior]
 
   def roles!(roles)
     roles = [*roles].map { |r| r.to_sym }
-    self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
+    self.roles_mask += (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
+  end
+
+  def remove_roles!(roles)
+    roles = [*roles].map { |r| r.to_sym }
+    self.roles_mask -= (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
   end
 
   def roles

@@ -36,7 +36,7 @@ ADMIN
     [x] remove user
     [x] ban user
     [x] unban user
-    [ ] limita operazioni utente
-    [ ] ripristina operazioni utente
+    [ ] limita operazioni utente (rescan, vedere voti, vedere commenti, MITRE ATT&CK, behavior reports)
+    [ ] ripristina operazioni utente (rescan, vedere voti, vedere commenti, MITRE ATT&CK, behavior reports)
     [ ] aggiungere commento su report
     [ ] aggiungere voto su report
