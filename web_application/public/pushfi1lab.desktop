@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Invio File FI1
+Comment=upload lab material
+Comment[it]=upload materiale lab
+Exec=roxterm -e ./anaconda3/bin/python /opt/FI1_2018_lab_upload/ScriptUpload.py
+Icon=/opt/FI1_2018_lab_upload/upload_icon.png
+Type=Application
+Categories=BIAR
+Terminal=true
