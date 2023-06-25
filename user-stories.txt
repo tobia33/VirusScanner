@@ -9,7 +9,9 @@ NON REGISTRATO
 
 REGISTRATO
     [x] login con google via Oauth
-    [x] login con user e password 
+    [x] login con user e password
+    [x] ban user dopo 10 tentativi di login falliti (aggiunto il 24/06/2023)
+    [x] login richiesto nuovamente dopo 30 minuti dall'inizio della sessione user (aggiunto il 24/06/2023)
     [x] fare upload e scan di singolo file  più grande di 32 MB e vedere il suo report
     [x] fare re-scan di report
     [x] vedere commenti di un report
@@ -33,8 +35,8 @@ REGISTRATO
 
 ADMIN 
     [x] remove user
-    [ ] ban user
-    [ ] unban user
+    [x] ban user
+    [x] unban user
     [ ] limita operazioni utente
     [ ] ripristina operazioni utente
     [ ] aggiungere commento su report

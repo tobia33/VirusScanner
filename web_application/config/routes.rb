@@ -23,6 +23,14 @@ Rails.application.routes.draw do
   get 'google_drives/export', to: "google_drives#export"
   get 'google_drives/import', to: "google_drives#import"
 
+<<<<<<< HEAD
+=======
+  get "users", to: "users#index"
+  delete "users/:id", to: "users#destroy"
+
+  #get 'rescan_reports/:id', to: 'rescan_reports#show'
+  
+>>>>>>> 3a2b92222c8da87233da4bc54df2797f6e62fee0
   resources :rescan_reports
   resources :behavior_reports
   resources :mitre_reports
@@ -33,8 +41,15 @@ Rails.application.routes.draw do
   resources :reports
   resources :binaries
   resources :users
+
+  resources :users, only: [:index] do
+    member do
+      patch :ban
+    end
+  end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
   # root "articles#index"
+  root "reports#index"
 end
