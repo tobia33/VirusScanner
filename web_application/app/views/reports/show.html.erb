@@ -12,6 +12,9 @@
     <%= link_to "rescan report", rescan_report_path(url)  %>
 <% end %>
 
+<%= link_to "export report to google drive", "/google_drives/export?id=#{@report.id}"  %>
+
+
 <% if @report.sha256%>
     <%= link_to "mitre report", mitre_report_path(@report.sha256)  %>
 <% end %>
