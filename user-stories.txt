@@ -11,6 +11,7 @@ REGISTRATO
     [x] login con google via Oauth
     [x] login con user e password
     [x] ban user dopo 10 tentativi di login falliti (aggiunto il 24/06/2023)
+    [x] login richiesto nuovamente dopo 30 minuti dall'inizio della sessione user (aggiunto il 24/06/2023)
     [x] fare upload e scan di singolo file  più grande di 32 MB e vedere il suo report
     [x] fare re-scan di report
     [x] vedere commenti di un report
