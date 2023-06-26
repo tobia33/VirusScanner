@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'manage_reports/download'
+  get 'manage_reports/upload'
+
+
   devise_for :users, :controllers => { 
     :sessions => "users/sessions", 
     :registrations => "users/registrations", 
@@ -19,9 +23,10 @@ Rails.application.routes.draw do
     
     #get 'rescan_reports/:id', to: 'rescan_reports#show'
     
-  get 'google_drives/export', to: "google_drives#export"
-  get 'google_drives/import', to: "google_drives#import"
 
+
+  resources :votes
+  resources :comments
   resources :rescan_reports
   resources :behavior_reports
   resources :mitre_reports
@@ -41,6 +46,5 @@ Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")
-  # root "articles#index"
   root "reports#index"
 end

@@ -87,3 +87,4 @@ end
 
 gem "multipart-post", "~> 2.3"
 gem "json"
+gem 'faraday-multipart'

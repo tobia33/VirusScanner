@@ -29,7 +29,8 @@ class HashesController < ApplicationController
         score = json_parsed["data"][0]["attributes"]["last_analysis_stats"]["malicious"]
         
         # create report
-        @report = Report.new(sha256: sha256, content: response.read_body, score: score)
+        @logged_in = User.find(session["warden.user.user.key"][0])[0]
+        @report = @logged_in.reports.create(sha256: sha256, content: response.read_body, score: score)
         
         # save report to database
         if !@report.save

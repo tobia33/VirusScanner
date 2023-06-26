@@ -7,6 +7,18 @@
     <%= link_to "rescan report", rescan_report_path(sha256)  %>
 <% end %>
 
+<% if @report.sha256%>
+    <% sha256 = Base64.encode64(@report.sha256)%>
+    <%= link_to "add comment to report", new_comment_path(sha: "#{sha256}", report_id: @report.id) %>
+    <%= link_to "add vote to report", new_vote_path(sha: "#{sha256}", report_id: @report.id) %>
+<% end %>
+
+<% if @report.url%>
+    <% url = Base64.encode64(@report.url)%>
+    <%= link_to "add comment to report", new_comment_path(url: "#{url}", report_id: @report.id)  %>
+    <%= link_to "add vote to report", new_vote_path(url: "#{url}", report_id: @report.id)  %>
+<% end %>
+
 <% if @report.url%>
     <% url = Base64.encode64(@report.url)%>
     <%= link_to "rescan report", rescan_report_path(url)  %>

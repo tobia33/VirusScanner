@@ -6,32 +6,32 @@ NON REGISTRATO
     [x] cercare un hash e far vedere il suo report
     [x] fare scan di URL e far vedere il report
     [x] recupero password //aggiunta il 21/06/2023
+    [ ] mail di verifica quando avviene registrazione
 
 REGISTRATO
     [x] login con google via Oauth
     [x] login con user e password
+    [ ] mail di notifica agli admin dopo 10 tentativi falliti da parte di utente
     [x] ban user dopo 10 tentativi di login falliti (aggiunto il 24/06/2023)
     [x] login richiesto nuovamente dopo 30 minuti dall'inizio della sessione user (aggiunto il 24/06/2023)
     [x] fare upload e scan di singolo file  più grande di 32 MB e vedere il suo report
     [x] fare re-scan di report
     [x] vedere commenti di un report
     [x] vedere i voti di un report
-    [ ] salvare un report su drive
-    [ ] fare load report da drive
+    [ ] fare download di report in formato json
+    [ ] fare upload di file in formato json, questo diventa poi un report a tutti gli effetti
     [x] get a summary of all MITRE ATT&CK techniques observed in a file
     [x] get a summary of all behavior reports for a file
     [x] caricare un file contenente degli hash e ottenere reports degli hash (report di gruppo)
     [x] possibilità di caricare un file di URL, o un file misto con URL e hash
     [x] ordinare i reports di gruppo secondo score
-    [ ] salvare reports di gruppo su google drive (cartella contenente singoli report)
-    [ ] fare load di reports di gruppo da drive
+    [ ] fare  download di file che riassume un report di gruppo
     [x] avere la possibilità di ispezionare i singoli report di gruppo (commenti, voti...)
-    [ ] salvare singoli report di gruppo su drive
-    [ ] fare load di singoli report di gruppo da drive
     [x] possibilità di accedere alla cronologia delle operazioni fatte
     [x] possibilità di ordinare la cronologia per data, score
     [x] rimuovi report da cronologia
     [x] un utente può cancellare il proprio account //aggiunta il 21/06/2023
+    [ ] può aggiungere note ad un proprio report (visibili anche dall’admin)
 
 ADMIN 
     [x] remove user
@@ -39,5 +39,11 @@ ADMIN
     [x] unban user
     [ ] limita operazioni utente
     [ ] ripristina operazioni utente
-    [ ] aggiungere commento su report
-    [ ] aggiungere voto su report
+    [ ] aggiungere commento su report       // fatto ma da restringere permessi ad admin
+    [ ] aggiungere voto su report           // fatto ma da restringere permessi ad admin
+    [ ] vede tutti i report di tutti gli utenti
+    [ ] può cancellare qualsiasi report
+    [ ] può modificare online alcuni campi dei report (score, rimozione commenti, rimozione voti)
+    [ ] può aggiunngere e leggere note sui report di ogni utente
+    [ ] non può bannare o limitare altri admin
+    [ ] ban user dopo 10 tentativi di login fallito

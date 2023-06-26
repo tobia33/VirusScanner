@@ -1,0 +1,16 @@
+<h1>Comments#new</h1>
+
+<%= form_with url: "/comments", method: :post, multipart: true do |form| %>
+  <%= form.label :comment, "comment text:" %>
+  <%= form.text_area :comment %>
+  <%= form.hidden_field :sha, value: "#{params["sha"]}" %>
+  <%= form.hidden_field :url, value: "#{params["url"]}" %>
+  <%= form.hidden_field :report_id, value: "#{params["report_id"]}" %>
+  <%= form.submit "Submit comment" %>
+<% end %>
+
+
+<p id="notice"><%= notice %></p>
+<%= link_to "home", reports_path  %>
+
+<p>Find me in app/views/comments/new.html.erb</p>

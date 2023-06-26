@@ -1,0 +1,16 @@
+<h1>Votes#new</h1>
+
+<%= form_with url: "/votes", method: :post, multipart: true do |form| %>
+  <%= form.label :vote, "comment text:" %>
+  <%= form.select :vote, ["harmless", "malicious"] %>
+  <%= form.hidden_field :sha, value: "#{params["sha"]}" %>
+  <%= form.hidden_field :url, value: "#{params["url"]}" %>
+  <%= form.hidden_field :report_id, value: "#{params["report_id"]}" %>
+  <%= form.submit "Submit vote" %>
+<% end %>
+
+
+<p id="notice"><%= notice %></p>
+<%= link_to "home", reports_path  %>
+
+<p>Find me in app/views/votes/new.html.erb</p>

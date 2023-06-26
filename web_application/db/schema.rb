@@ -35,8 +35,10 @@ ActiveRecord::Schema[7.0].define(version: 20230623113403742745) do
 
   create_table "groups", force: :cascade do |t|
     t.string "file_name"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
   create_table "privileges", force: :cascade do |t|
@@ -55,9 +57,11 @@ ActiveRecord::Schema[7.0].define(version: 20230623113403742745) do
     t.text "content"
     t.string "score"
     t.integer "group_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_reports_on_group_id"
+    t.index ["user_id"], name: "index_reports_on_user_id"
   end
 
   create_table "role_users", id: false, force: :cascade do |t|
@@ -110,6 +114,8 @@ ActiveRecord::Schema[7.0].define(version: 20230623113403742745) do
   end
 
   add_foreign_key "comments", "reports"
+  add_foreign_key "groups", "users"
   add_foreign_key "reports", "groups"
+  add_foreign_key "reports", "users"
   add_foreign_key "votes", "reports"
 end

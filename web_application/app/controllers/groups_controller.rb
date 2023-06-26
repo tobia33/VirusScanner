@@ -13,7 +13,8 @@ class GroupsController < ApplicationController
     end
 
     # create group
-    @group = Group.new(file_name: "#{uploaded_file.original_filename}")
+    @logged_in = User.find(session["warden.user.user.key"][0])[0]
+    @group = logged_in.reports.create(file_name: "#{uploaded_file.original_filename}")
  
     # save group to the database
     if !@group.save

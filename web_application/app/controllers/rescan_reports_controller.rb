@@ -43,7 +43,8 @@ class RescanReportsController < ApplicationController
             score = json_parsed["data"]["attributes"]["stats"]["malicious"]
             
             # create report
-            @report = Report.new(url: url, content: response.read_body, score: score)
+            @logged_in = User.find(session["warden.user.user.key"][0])[0]
+            @report = @logged_in.reports.create(url: url, content: response.read_body, score: score)
 
             # save report to the database
             if !@report.save
@@ -135,7 +136,8 @@ class RescanReportsController < ApplicationController
             score = json_parsed["data"]["attributes"]["stats"]["malicious"]
 
             # create report
-            @report = Report.new(sha256: sha256, content: response.read_body, score: score)
+            @logged_in = User.find(session["warden.user.user.key"][0])[0]
+            @report = @logged_in.reports.create(sha256: sha256, content: response.read_body, score: score)
             
             # save report to database
             if !@report.save

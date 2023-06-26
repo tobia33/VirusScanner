@@ -1,7 +1,8 @@
 class PastReportsController < ApplicationController
   def index
     @single_reports = []
-    all_reports = Report.all          # poi mettere solo quelli di utente
+    
+    all_reports = Report.where("user_id = ?", session["warden.user.user.key"][0])
     
     # rimuovo report che sono in un gruppo
     for report in all_reports do
@@ -18,7 +19,7 @@ class PastReportsController < ApplicationController
       end
     end
     
-    @groups = Group.all           # poi mettere solo quelli di utente
+    @groups = Group.where("user_id = ?", session["warden.user.user.key"][0])
     
   end
 
