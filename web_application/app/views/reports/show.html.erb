@@ -2,11 +2,12 @@
 
 <%= link_to "home", reports_path  %>
 
-<% if @report.sha256%>
+<% if @report.sha256 && !current_user.has_role?(:not_rescan) %>
     <% sha256 = Base64.encode64(@report.sha256)%>
     <%= link_to "rescan report", rescan_report_path(sha256)  %>
 <% end %>
 
+<<<<<<< HEAD
 <% if @report.sha256%>
     <% sha256 = Base64.encode64(@report.sha256)%>
     <%= link_to "add comment to report", new_comment_path(sha: "#{sha256}", report_id: @report.id) %>
@@ -20,18 +21,18 @@
 <% end %>
 
 <% if @report.url%>
+=======
+<% if @report.url && !current_user.has_role?(:not_rescan)%>
+>>>>>>> 605e3c5b09d88344ff6f758395e6d1bda85da73e
     <% url = Base64.encode64(@report.url)%>
     <%= link_to "rescan report", rescan_report_path(url)  %>
 <% end %>
 
-<%= link_to "export report to google drive", "/google_drives/export?id=#{@report.id}"  %>
-
-
-<% if @report.sha256%>
+<% if @report.sha256 && !current_user.has_role?(:not_mitre)%>
     <%= link_to "mitre report", mitre_report_path(@report.sha256)  %>
 <% end %>
 
-<% if @report.sha256%>
+<% if @report.sha256 && !current_user.has_role?(:not_behavior)%>
     <%= link_to "behavior report", behavior_report_path(@report.sha256)  %>
 <% end %>
 
@@ -73,23 +74,28 @@ end
     <%end%>
     </ul>
 <% end %>
-<h3>COMMENTS</h3>
-<ul>
-<% @report.comments.each do |comment| %>
-    <li>
-    <%= comment.body %>
-    </li>
+    
+<% if !current_user.has_role?(:not_comments)%>
+    <h3>COMMENTS</h3>
+    <ul>
+    <% @report.comments.each do |comment| %>
+        <li>
+        <%= comment.body %>
+        </li>
+    <% end %>
+    </ul>
 <% end %>
-</ul>
 
-<h3>VOTES</h3>
-<ul>
-<% @report.votes.each do |vote| %>
-    <li>
-    <%= vote.verdict %>
-    <%= vote.value %>
-    </li>
+<% if !current_user.has_role?(:not_votes)%>
+    <h3>VOTES</h3>
+    <ul>
+    <% @report.votes.each do |vote| %>
+        <li>
+        <%= vote.verdict %>
+        <%= vote.value %>
+        </li>
+    <% end %>
+    </ul>
 <% end %>
-</ul>
 
 <p>Find me in app/views/reports/show.html.erb</p>

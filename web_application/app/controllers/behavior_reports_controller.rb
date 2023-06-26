@@ -1,5 +1,11 @@
 class BehaviorReportsController < ApplicationController
   def show
+    
+    current_user=User.find(session[:user_id])
+    if current_user.has_role?(:not_behavior)
+      redirect_to root_path
+    end
+
     url = URI("https://www.virustotal.com/api/v3/files/#{params[:id]}/behaviour_summary")
 
     http = Net::HTTP.new(url.host, url.port)

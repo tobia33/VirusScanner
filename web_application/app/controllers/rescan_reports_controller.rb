@@ -1,6 +1,11 @@
 class RescanReportsController < ApplicationController
     def show
 
+        current_user=User.find(session[:user_id])
+        if current_user.has_role?(:not_rescan)
+            redirect_to root_path
+        end
+
         id = Base64.decode64(params[:id])
         if id.match("^http")
             url = URI("https://www.virustotal.com/api/v3/urls")
