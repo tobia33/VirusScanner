@@ -7,7 +7,7 @@
     },
     "data": {
         "attributes": {
-            "date": 1685802778,
+            "date": 1687713466,
             "status": "completed",
             "stats": {
                 "harmless": 74,
@@ -377,12 +377,6 @@
                     "method": "blacklist",
                     "engine_name": "Kaspersky"
                 },
-                "Segasec": {
-                    "category": "harmless",
-                    "result": "clean",
-                    "method": "blacklist",
-                    "engine_name": "Segasec"
-                },
                 "Sucuri SiteCheck": {
                     "category": "harmless",
                     "result": "clean",
@@ -406,6 +400,12 @@
                     "result": "unrated",
                     "method": "blacklist",
                     "engine_name": "Cluster25"
+                },
+                "SOCRadar": {
+                    "category": "harmless",
+                    "result": "clean",
+                    "method": "blacklist",
+                    "engine_name": "SOCRadar"
                 },
                 "URLhaus": {
                     "category": "harmless",
@@ -560,10 +560,10 @@
             }
         },
         "type": "analysis",
-        "id": "u-d0e196a0c25d35dd0a84593cbae0f38333aa58529936444ea26453eab28dfc86-1685802778",
+        "id": "u-d0e196a0c25d35dd0a84593cbae0f38333aa58529936444ea26453eab28dfc86-1687713466",
         "links": {
             "item": "https://www.virustotal.com/api/v3/urls/d0e196a0c25d35dd0a84593cbae0f38333aa58529936444ea26453eab28dfc86",
-            "self": "https://www.virustotal.com/api/v3/analyses/u-d0e196a0c25d35dd0a84593cbae0f38333aa58529936444ea26453eab28dfc86-1685802778"
+            "self": "https://www.virustotal.com/api/v3/analyses/u-d0e196a0c25d35dd0a84593cbae0f38333aa58529936444ea26453eab28dfc86-1687713466"
         }
     }
 }

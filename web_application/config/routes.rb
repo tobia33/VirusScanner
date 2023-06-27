@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
-  get 'manage_reports/download'
-  get 'manage_reports/upload'
-
-
+  
+  
   devise_for :users, :controllers => { 
     :sessions => "users/sessions", 
     :registrations => "users/registrations", 
@@ -23,15 +21,17 @@ Rails.application.routes.draw do
     
     #get 'rescan_reports/:id', to: 'rescan_reports#show'
     
-
-
-  resources :votes
-  resources :comments
-  resources :rescan_reports
-  resources :behavior_reports
-  resources :mitre_reports
-  resources :groups
-  resources :past_reports
+    
+    get 'manage_reports/download', to: 'manage_reports#download'
+    get 'manage_reports/upload', to: 'manage_reports#upload'
+    
+    resources :votes
+    resources :comments
+    resources :rescan_reports
+    resources :behavior_reports
+    resources :mitre_reports
+    resources :groups
+    resources :past_reports
   resources :hashes
   resources :urls
   resources :reports
