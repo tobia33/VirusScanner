@@ -37,13 +37,13 @@ ADMIN
     [x] remove user
     [x] ban user
     [x] unban user
-    [ ] aggiungere commento su report       // fatto ma da restringere permessi ad admin
-    [ ] aggiungere voto su report           // fatto ma da restringere permessi ad admin
-    [ ] vede tutti i report di tutti gli utenti
-    [ ] può cancellare qualsiasi report
+    [x] aggiungere commento su report       // fatto ma da restringere permessi ad admin
+    [x] aggiungere voto su report           // fatto ma da restringere permessi ad admin
+    [x] vede tutti i report di tutti gli utenti
+    [x] può cancellare qualsiasi report
     [ ] può modificare online alcuni campi dei report (score, rimozione commenti, rimozione voti)
     [ ] può aggiunngere e leggere note sui report di ogni utente
-    [ ] non può bannare o limitare altri admin
+    [x] non può bannare o limitare altri admin
     [ ] ban user dopo 10 tentativi di login fallito
-    [ ] limita operazioni utente (rescan, vedere voti, vedere commenti, MITRE ATT&CK, behavior reports)
-    [ ] ripristina operazioni utente (rescan, vedere voti, vedere commenti, MITRE ATT&CK, behavior reports)
+    [x] limita operazioni utente (rescan, vedere voti, vedere commenti, MITRE ATT&CK, behavior reports)
+    [x] ripristina operazioni utente (rescan, vedere voti, vedere commenti, MITRE ATT&CK, behavior reports)

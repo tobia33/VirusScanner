@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 20230623113403742745) do
+ActiveRecord::Schema[7.0].define(version: 20230628123403742745) do
   create_table "comments", force: :cascade do |t|
     t.text "body"
     t.integer "report_id", null: false
@@ -35,10 +35,10 @@ ActiveRecord::Schema[7.0].define(version: 20230623113403742745) do
 
   create_table "groups", force: :cascade do |t|
     t.string "file_name"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_groups_on_user_id"
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_groups_on_user_id", unique: true
   end
 
   create_table "privileges", force: :cascade do |t|
@@ -57,11 +57,11 @@ ActiveRecord::Schema[7.0].define(version: 20230623113403742745) do
     t.text "content"
     t.string "score"
     t.integer "group_id"
-    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
     t.index ["group_id"], name: "index_reports_on_group_id"
-    t.index ["user_id"], name: "index_reports_on_user_id"
+    t.index ["user_id"], name: "index_reports_on_user_id", unique: true
   end
 
   create_table "role_users", id: false, force: :cascade do |t|
