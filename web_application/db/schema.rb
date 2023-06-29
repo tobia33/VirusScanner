@@ -60,7 +60,6 @@ ActiveRecord::Schema[7.0].define(version: 20230628123403742745) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-
     t.index ["group_id"], name: "index_reports_on_group_id"
     t.index ["user_id"], name: "index_reports_on_user_id"
   end
@@ -116,7 +115,9 @@ ActiveRecord::Schema[7.0].define(version: 20230628123403742745) do
 
   add_foreign_key "comments", "reports"
   add_foreign_key "groups", "users"
+  add_foreign_key "groups", "users"
   add_foreign_key "reports", "groups"
+  add_foreign_key "reports", "users"
   add_foreign_key "reports", "users"
   add_foreign_key "votes", "reports"
 end

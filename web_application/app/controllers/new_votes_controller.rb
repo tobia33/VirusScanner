@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class NewVotesController < ApplicationController
   def new
   end
 
@@ -56,23 +56,22 @@ class CommentsController < ApplicationController
       file_id = json_parsed["meta"]["url_info"]["id"]
 
       # add comment
-      uri = URI("https://www.virustotal.com/api/v3/urls/#{file_id}/comments")
-      
+      uri = URI("https://www.virustotal.com/api/v3/urls/#{file_id}/votes")
+
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
-      
+
       request = Net::HTTP::Post.new(uri)
       request["accept"] = 'application/json'
       request["content-type"] = 'application/json'
       request["x-apikey"] = '06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
-      
-      request.body = "{\"data\":{\"type\":\"comment\",\"attributes\":{\"text\":\"#{params[:comment]}\"}}}"
-      
-      
+
+      request.body = "{\"data\":{\"type\":\"vote\",\"attributes\":{\"verdict\":\"#{params[:vote]}\"}}}"
+
       response = http.request(request)
     else
-      
-      uri = URI("https://www.virustotal.com/api/v3/files/#{sha}/comments")
+
+      uri = URI("https://www.virustotal.com/api/v3/files/#{sha}/votes")
 
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
@@ -81,11 +80,11 @@ class CommentsController < ApplicationController
       request["accept"] = 'application/json'
       request["content-type"] = 'application/json'
       request["x-apikey"] = '06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
-
-      request.body = "{\"data\":{\"type\":\"comment\",\"attributes\":{\"text\":\"#{params[:comment]}\"}}}"
+      request.body = "{\"data\":{\"type\":\"vote\",\"attributes\":{\"verdict\":\"#{params[:vote]}\"}}}"
 
       response = http.request(request)
-
+      puts "//////////////////////////////////////////"
+      puts response.read_body
     end
     # redirect to report#show
     @report = Report.find_by_id(params[:report_id])

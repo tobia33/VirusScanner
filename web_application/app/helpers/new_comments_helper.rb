@@ -1,0 +1,2 @@
+module NewCommentsHelper
+end

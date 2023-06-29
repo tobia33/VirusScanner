@@ -18,14 +18,14 @@ REGISTRATO
     [x] fare re-scan di report
     [x] vedere commenti di un report
     [x] vedere i voti di un report
-    [ ] fare download di report in formato json
-    [ ] fare upload di file in formato json, questo diventa poi un report a tutti gli effetti
+    [x] fare download di report in formato json
+    [x] fare upload di file in formato json, questo diventa poi un report a tutti gli effetti
     [x] get a summary of all MITRE ATT&CK techniques observed in a file
     [x] get a summary of all behavior reports for a file
     [x] caricare un file contenente degli hash e ottenere reports degli hash (report di gruppo)
     [x] possibilità di caricare un file di URL, o un file misto con URL e hash
     [x] ordinare i reports di gruppo secondo score
-    [ ] fare  download di file che riassume un report di gruppo
+    [x] fare  download di file che riassume un report di gruppo
     [x] avere la possibilità di ispezionare i singoli report di gruppo (commenti, voti...)
     [x] possibilità di accedere alla cronologia delle operazioni fatte
     [x] possibilità di ordinare la cronologia per data, score
@@ -37,8 +37,8 @@ ADMIN
     [x] remove user
     [x] ban user
     [x] unban user
-    [x] aggiungere commento su report       // fatto ma da restringere permessi ad admin
-    [x] aggiungere voto su report           // fatto ma da restringere permessi ad admin
+    [x] aggiungere commento su report
+    [x] aggiungere voto su report
     [x] vede tutti i report di tutti gli utenti
     [x] può cancellare qualsiasi report
     [ ] può modificare online alcuni campi dei report (score, rimozione commenti, rimozione voti)

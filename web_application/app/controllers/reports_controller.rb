@@ -10,6 +10,9 @@ class ReportsController < ApplicationController
   def show
     # find report given id
     @report = Report.find(params[:id])
+    if @report["group_id"]
+      @group = Group.find(@report["group_id"])
+    end
   end
   def destroy
     @report = Report.find(params[:id])

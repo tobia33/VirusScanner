@@ -4,6 +4,7 @@
 
 <%= link_to "sort by score", group_path(@group, sort: "score")  %>
 <%= link_to "sort by date", group_path(@group, sort: "date")  %>
+<%= link_to "download group report", "/manage_reports/download_group?id=#{@group["id"]}"  %>
 
 <ul>
   <% @sorted.each do |report| %>

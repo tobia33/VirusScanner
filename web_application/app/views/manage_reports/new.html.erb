@@ -1,0 +1,11 @@
+<h1>ManageReports#upload</h1>
+
+<%= form_with url: "/manage_reports", method: :post, multipart: true do |form| %>
+  <%= form.label :report, "Input report in json format:" %>
+  <%= form.file_field :report %>
+  <%= form.submit "Submit" %>
+<% end %>
+<p id="notice"><%= notice %></p>
+<%= link_to "home", reports_path  %>
+
+<p>Find me in app/views/manage_reports/upload.html.erb</p>

@@ -14,13 +14,15 @@ class GroupsController < ApplicationController
 
     # create group
     @logged_in = User.find(session["warden.user.user.key"][0])[0]
-    @group = logged_in.reports.create(file_name: "#{uploaded_file.original_filename}")
- 
-    # save group to the database
-    if !@group.save
+    
+    puts User.find(session["warden.user.user.key"][0])[0][:id]
+    # # save group to the database
+    if !@logged_in.save
+      puts @group.errors.full_messages
       render :new, status: :unprocessable_entity
       return
     end
+    @group = @logged_in.groups.create(file_name: "#{uploaded_file.original_filename}")
 
     # read lines
     File.readlines("public/#{uploaded_file.original_filename}").each do |line|
@@ -74,7 +76,7 @@ class GroupsController < ApplicationController
         score = json_parsed["data"]["attributes"]["stats"]["malicious"]
         
         # create report
-        @report = @group.reports.create(url: url, content: response.read_body, score: score)
+        @report = @group.reports.create(url: url, content: response.read_body, score: score, user_id: @group["user_id"])
 
         # get file id
         file_id = json_parsed["meta"]["url_info"]["id"]
@@ -92,6 +94,11 @@ class GroupsController < ApplicationController
         response = http.request(request)
         json_parsed = JSON.parse(response.read_body)
 
+        # if !@report.save
+        #   puts @report.errors.full_messages
+        #   render :new, status: :unprocessable_entity
+        #   return
+        # end
         # for every comment of the report, add it to the database
         for comm in json_parsed["data"] do
           @report.comments.create(body: comm["attributes"]["text"])

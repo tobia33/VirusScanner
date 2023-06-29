@@ -1,7 +1,7 @@
 class RescanReportsController < ApplicationController
     def show
 
-        current_user=User.find(session[:user_id])
+        current_user=User.find(session["warden.user.user.key"][0])[0]
         if current_user.has_role?(:not_rescan)
             redirect_to root_path
         end

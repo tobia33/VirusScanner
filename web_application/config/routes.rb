@@ -23,10 +23,11 @@ Rails.application.routes.draw do
     
     
     get 'manage_reports/download', to: 'manage_reports#download'
-    get 'manage_reports/upload', to: 'manage_reports#upload'
-    
-    resources :votes
-    resources :comments
+    get 'manage_reports/download_group', to: 'manage_reports#download_group'
+
+    resources :manage_reports
+    resources :new_votes
+    resources :new_comments
     resources :rescan_reports
     resources :behavior_reports
     resources :mitre_reports
