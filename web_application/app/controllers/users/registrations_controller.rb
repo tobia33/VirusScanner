@@ -12,7 +12,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # POST /resource
   def create
     @user=User.where(["username == ?",params[:user][:username]])
-    if(@user!=[])
+    if(!@user.empty?)
       redirect_to new_user_registration_path, notice: "Username already exist" 
       return
     end

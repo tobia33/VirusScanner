@@ -3,6 +3,12 @@ class CommentsController < ApplicationController
   end
 
   def create
+
+    user=User.find(session[:user_id])
+    if !user.has_role?(:admin)
+      redirect_to root_path
+    end
+
     if params[:sha]
       sha = Base64.decode64(params[:sha])
     end

@@ -15,7 +15,11 @@ class User < ApplicationRecord
 
   def roles!(roles)
     roles = [*roles].map { |r| r.to_sym }
-    self.roles_mask += (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
+    if self.roles_mask==nil
+      self.roles_mask = (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
+    else
+      self.roles_mask += (roles & ROLES).map { |r| 2**ROLES.index(r) }.inject(0, :+)
+    end
   end
 
   def remove_roles!(roles)
