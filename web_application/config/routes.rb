@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
-  
   devise_for :users, :controllers => { 
     :sessions => "users/sessions", 
     :registrations => "users/registrations", 
@@ -15,24 +14,25 @@ Rails.application.routes.draw do
       get "session/destroy" => "devise/sessions#destroy"
     end
     
-    get "users", to: "users#index"
-    delete "users/:id", to: "users#destroy"
-    
-    
-    #get 'rescan_reports/:id', to: 'rescan_reports#show'
-    
-    
-    get 'manage_reports/download', to: 'manage_reports#download'
-    get 'manage_reports/download_group', to: 'manage_reports#download_group'
+  get "users", to: "users#index"
+  delete "users/:id", to: "users#destroy"
+  
+  
+  #get 'rescan_reports/:id', to: 'rescan_reports#show'
+  
+  
+  get 'manage_reports/download', to: 'manage_reports#download'
+  get 'manage_reports/download_group', to: 'manage_reports#download_group'
 
-    resources :manage_reports
-    resources :new_votes
-    resources :new_comments
-    resources :rescan_reports
-    resources :behavior_reports
-    resources :mitre_reports
-    resources :groups
-    resources :past_reports
+  resources :notes
+  resources :manage_reports
+  resources :new_votes
+  resources :new_comments
+  resources :rescan_reports
+  resources :behavior_reports
+  resources :mitre_reports
+  resources :groups
+  resources :past_reports
   resources :hashes
   resources :urls
   resources :reports

@@ -91,4 +91,14 @@ class NewCommentsController < ApplicationController
     @report = Report.find_by_id(params[:report_id])
     redirect_to @report
   end
+  def destroy
+    @comment = Comment.find(params[:id])
+    @report = Report.find(@comment.report_id)
+    user=User.find(session["warden.user.user.key"][0]).first
+    if user.id==@report.user_id || user.has_role?(:admin)
+      @comment.destroy
+    else
+      redirect_to root_path, notice: "you can't destroy this report"
+    end
+  end
 end

@@ -41,6 +41,14 @@ ActiveRecord::Schema[7.0].define(version: 20230628123403742745) do
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
+  create_table "notes", force: :cascade do |t|
+    t.text "content"
+    t.integer "report_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["report_id"], name: "index_notes_on_report_id"
+  end
+
   create_table "privileges", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -116,6 +124,7 @@ ActiveRecord::Schema[7.0].define(version: 20230628123403742745) do
   add_foreign_key "comments", "reports"
   add_foreign_key "groups", "users"
   add_foreign_key "groups", "users"
+  add_foreign_key "notes", "reports"
   add_foreign_key "reports", "groups"
   add_foreign_key "reports", "users"
   add_foreign_key "reports", "users"

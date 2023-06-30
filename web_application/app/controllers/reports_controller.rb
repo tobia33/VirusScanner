@@ -25,4 +25,12 @@ class ReportsController < ApplicationController
       redirect_to root_path, notice: "you can't destroy this report"
     end
   end
+
+  def edit
+    @report = Report.find(params[:id])
+  end
+  def update
+    @report = Report.find(params[:id])
+    @report.update_attribute(:score, params["report"]["score"])
+  end
 end
