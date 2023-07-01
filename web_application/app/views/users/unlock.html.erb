@@ -1,0 +1,12 @@
+<h2>Resend unlock instructions</h2>
+
+<%= form_tag(unlock_user_path(:params), method: :post) do %>
+  <div class="field">
+    <%= label_tag :email, "Email" %>
+    <%= email_field_tag :email, nil, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Send email to all admins" %>
+  </div>
+<% end %>

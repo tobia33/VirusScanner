@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+    
     def index
         @user=User.all
     end
@@ -75,6 +76,23 @@ class UsersController < ApplicationController
         end
         @user.save
         redirect_to user_path #, notice: "User bannato #{@user.access_locked?}"
+    end
+
+    def unlock
+
+        user=User.where(["email == ?",params[:email]]).first
+        if user!=nil
+            if user.locked_at != nil
+                admins = User.all
+                admins.each do |admin|
+                    if admin.has_role?(:admin)
+                        UserMailer.send_unban_email(admin,params[:email]).deliver_now
+                    end
+                end
+
+                redirect_to root_path, notice: "Admins are processing your request"
+            end
+        end
     end
 
 end

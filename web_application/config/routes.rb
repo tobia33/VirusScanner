@@ -17,7 +17,8 @@ Rails.application.routes.draw do
     
     get "users", to: "users#index"
     delete "users/:id", to: "users#destroy"
-    
+
+    get "user_unlock", to: "users#unlock"
     
     #get 'rescan_reports/:id', to: 'rescan_reports#show'
     
@@ -33,11 +34,11 @@ Rails.application.routes.draw do
     resources :mitre_reports
     resources :groups
     resources :past_reports
-  resources :hashes
-  resources :urls
-  resources :reports
-  resources :binaries
-  resources :users
+    resources :hashes
+    resources :urls
+    resources :reports
+    resources :binaries
+    resources :users
 
   resources :users, only: [:index] do
     member do
@@ -47,6 +48,7 @@ Rails.application.routes.draw do
       patch :comments
       patch :behavior
       patch :mitre
+      post :unlock
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
