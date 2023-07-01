@@ -36,6 +36,8 @@ class ManageReportsController < ApplicationController
     File.open(filename, 'rb') do |file|
       send_data file.read, filename: "group_report.json"
     end
+    # delete file locally
+    File.delete(Rails.root.join('public', num))
   end
 
   def new
@@ -76,7 +78,7 @@ class ManageReportsController < ApplicationController
 
           # calculate score
           score = json_parsed["data"][0]["attributes"]["last_analysis_stats"]["malicious"]
-          
+
           # create report
           @logged_in = User.find(session["warden.user.user.key"][0])[0]
           @report = @logged_in.reports.create(sha256: sha256, content: raw, score: score)

@@ -1,0 +1,50 @@
+<h1>Reports#edit</h1>
+
+<%= form_for(@report) do |form| %>
+  <%= form.label :score, "change score:" %>
+  <%= form.number_field :score, in: 1..100 %>
+  <%= form.hidden_field :id, value: "#{params["id"]}" %>
+  <%= form.submit "Submit comment" %>
+<% end %>
+
+<h3>COMMENTS</h3>
+    <ul>
+    <% @report.comments.each do |comment| %>
+        <li>
+        <%= comment.body %>
+        <%= link_to "[ Delete ]", new_comment_path(comment.id), data: {
+                  turbo_method: :delete,
+                } %>
+        </li>
+    <% end %>
+    </ul>
+
+<h3>VOTES</h3>
+    <ul>
+    <% @report.votes.each do |vote| %>
+        <li>
+        <%= vote.verdict %>
+        <%= vote.value %>
+        <%= link_to "[ Delete ]", new_vote_path(vote.id), data: {
+                  turbo_method: :delete,
+                } %>
+        </li>
+    <% end %>
+    </ul>
+
+<h3>NOTES</h3>
+    <ul>
+    <% @report.notes.each do |note| %>
+        <li>
+        <%= note.content %>
+        <%= link_to "[ Delete ]", note_path(note.id), data: {
+                  turbo_method: :delete,
+                } %>
+        </li>
+    <% end %>
+    </ul>
+
+<p id="notice"><%= notice %></p>
+<%= link_to "go back", report_path(@report)  %>
+
+<p>Find me in app/views/reports/new.html.erb</p>

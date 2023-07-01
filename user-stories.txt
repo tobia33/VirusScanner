@@ -31,7 +31,7 @@ REGISTRATO
     [x] possibilità di ordinare la cronologia per data, score
     [x] rimuovi report da cronologia
     [x] un utente può cancellare il proprio account //aggiunta il 21/06/2023
-    [ ] può aggiungere note ad un proprio report (visibili anche dall’admin)
+    [x] può aggiungere note ad un proprio report (visibili anche dall’admin)
 
 ADMIN 
     [x] remove user
@@ -41,8 +41,8 @@ ADMIN
     [x] aggiungere voto su report
     [x] vede tutti i report di tutti gli utenti
     [x] può cancellare qualsiasi report
-    [ ] può modificare online alcuni campi dei report (score, rimozione commenti, rimozione voti)
-    [ ] può aggiunngere e leggere note sui report di ogni utente
+    [x] può modificare online alcuni campi dei report (score, rimozione commenti, rimozione voti)
+    [x] può aggiunngere e leggere note sui report di ogni utente
     [x] non può bannare o limitare altri admin
     [ ] ban user dopo 10 tentativi di login fallito
     [x] limita operazioni utente (rescan, vedere voti, vedere commenti, MITRE ATT&CK, behavior reports)

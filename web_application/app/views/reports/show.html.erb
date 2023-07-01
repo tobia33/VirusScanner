@@ -4,6 +4,10 @@
 
 <%= link_to "download report", "/manage_reports/download?id=#{@report.id}"  %>
 
+<%= link_to "add note", new_note_path(report_id: @report.id)%>
+
+<%= link_to "edit report", edit_report_path(@report.id) %>
+
 <% if @group %>
     <%= link_to "return to group", group_path(@group)  %>
 <% end %>
@@ -99,5 +103,15 @@ end
     <% end %>
     </ul>
 <% end %>
+
+<h3>NOTES</h3>
+    <ul>
+    <% @report.notes.each do |note| %>
+        <li>
+        <%= note.content %>
+        </li>
+    <% end %>
+    </ul>
+
 
 <p>Find me in app/views/reports/show.html.erb</p>

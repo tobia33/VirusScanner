@@ -1,0 +1,14 @@
+<h1>Notes#new</h1>
+
+<%= form_with url: "/notes", method: :post, multipart: true do |form| %>
+  <%= form.label :note, "note text:" %>
+  <%= form.text_area :note %>
+  <%= form.hidden_field :report_id, value: "#{params["report_id"]}" %>
+  <%= form.submit "Submit comment" %>
+<% end %>
+
+
+<p id="notice"><%= notice %></p>
+<%= link_to "go back", report_path(@report)  %>
+
+<p>Find me in app/views/notes/new.html.erb</p>

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   
-  
   devise_for :users, :controllers => { 
     :sessions => "users/sessions", 
     :registrations => "users/registrations", 
@@ -26,6 +25,7 @@ Rails.application.routes.draw do
     get 'manage_reports/download', to: 'manage_reports#download'
     get 'manage_reports/download_group', to: 'manage_reports#download_group'
 
+    resources :notes
     resources :manage_reports
     resources :new_votes
     resources :new_comments
