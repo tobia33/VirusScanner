@@ -57,4 +57,17 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+
+  config.action_mailer.smtp_settings = { address: "smtp.gmail.com",
+                                         domain: "mail.gmail.com",
+                                         port: 587,
+                                         user_name: "virusscannerassistant@gmail.com",
+                                         password: "ktwcghvwlhlmlwky",
+                                         authentication: 'plain',
+                                         enable_startplt_auto: true }
+
+  ENV['GOOGLE_CLIENT_ID'] = "952869501288-givv4t489rpuk63a8l0l5f36tbtoaunl.apps.googleusercontent.com"
+  ENV['GOOGLE_CLIENT_SECRET'] = "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"
+
+  Rails.application.routes.default_url_options[:host] = 'domain.example'
 end
