@@ -5,6 +5,14 @@ ruby "2.7.2"
 
 gem 'rspec'
 
+gem 'rspec-rails'
+
+gem 'webmock'
+
+gem 'rails-controller-testing'
+
+gem 'shoulda-matchers'
+
 gem 'devise'
 
 gem 'omniauth'
