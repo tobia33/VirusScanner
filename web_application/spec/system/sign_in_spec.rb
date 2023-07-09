@@ -1,19 +1,25 @@
-#require "rails_helper"
+require "rails_helper"
 
-#describe "User signs in", type: :system do
-#  before do
-#    @user = create :user
-#    visit new_user_session_path
-#  end
+describe "User signs in", type: :system do
+    before :each do        
+        @user1 = User.create(username: 'example1', email: 'example1@example.com', password: 'password')
+        @user2 = User.create(username: 'example2', email: 'example2@example.com', password: 'password', confirmed_at: Date.today)
+        visit new_user_session_path
+    end
 
-#  scenario "valid with correct credentials" do
-#    fill_in "user_email", with: @user.email
-#    fill_in "user_password", with: @user.password
-#    click_button "sign in"
-#
-#    expect(page).to have_text "Welcome back"
-#    find('#user-menu-button').click
-#    expect(page).to have_link "Sign out"
-#    expect(page).to have_current_path root_path
-#  end
-#end
+  scenario "valid with correct credentials but mail address not confirmed" do
+    fill_in "user_username", with: @user1.username
+    fill_in "user_password", with: @user1.password
+    click_button "Log in"
+
+    expect(page).to have_text "You have to confirm your email address before continuing"
+  end
+
+  scenario "valid with correct credentials and mail address confirmed" do
+    fill_in "user_username", with: @user2.username
+    fill_in "user_password", with: @user2.password
+    click_button "Log in"
+
+    expect(page).to have_text "Signed in successfully"
+  end
+end
