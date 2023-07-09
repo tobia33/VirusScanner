@@ -1308,6 +1308,19 @@ RSpec.describe HashesController, type: :controller do
     end
     context 'with an invalid input hash' do
       let(:input_hash) { 'invalid_hash' }
+      before do
+        stub_request(:get, "https://www.virustotal.com/api/v3/search?query=invalidHash").
+         with(
+           headers: {
+          'Accept'=>'application/json',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'Host'=>'www.virustotal.com',
+          'User-Agent'=>'Ruby',
+          'X-Apikey'=>'06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
+           }).to_return(status: 200, body:'{
+            "data": []
+            }')
+      end
 
       it 'redirects to the new action with a flash notice' do
         post :create, params: { input_hash: input_hash }
