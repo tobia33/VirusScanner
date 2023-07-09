@@ -1,60 +1,88 @@
-<h1>Users#show</h1>
+<h1>Utenti registrati</h1>
 
 <ul>
   <% if current_user.has_role?(:admin) %>
+    <table>
     <% User.all.each do |u| %>
-      <li>
+        <tr>
+        <td>
         <%= u.email %> <%= button_to "Delete", user_path(u), method: :delete, data: { confirm: "Really delete this user?" } %>
+        </td>
         <% if !u.has_role?(:admin) %>
           <% if u.access_locked? %>
+            <td>
             <strong> Bannato </strong>
             <%= button_to 'UnBan', ban_user_path(u), method: :patch %>
+            </td>
           <% else %>
+            <td>
             <strong> Non bannato </strong>
             <%= button_to 'Ban', ban_user_path(u), method: :patch %>
+            </td>
           <% end %>
           <% if u.has_role?(:not_rescan)%>
+            <td>
             <strong> User can't rescan </strong>
             <%= button_to 'Unlock', rescan_user_path(u), method: :patch %>
+            </td>
           <% else %>
+            <td>
             <strong> User can rescan </strong>
             <%= button_to 'Lock', rescan_user_path(u), method: :patch %>
+            </td>
           <% end %>
 
           <% if u.has_role?(:not_behavior)%>
+            <td>
             <strong> User can't see behavior reports </strong>
             <%= button_to 'Unlock', behavior_user_path(u), method: :patch %>
+            </td>
           <% else %>
+            <td>
             <strong> User can see behavior reports </strong>
             <%= button_to 'Lock', behavior_user_path(u), method: :patch %>
+            </td>
           <% end %>
 
           <% if u.has_role?(:not_comments)%>
+            <td>
             <strong> User can't see comments </strong>
             <%= button_to 'Unlock',comments_user_path(u), method: :patch %>
+            </td>
           <% else %>
+            <td>
             <strong> User can see comments </strong>
             <%= button_to 'Lock', comments_user_path(u), method: :patch %>
+            </td>
           <% end %>
 
           <% if u.has_role?(:not_votes)%>
+            <td>
             <strong> User can't see votes </strong>
             <%= button_to 'Unlock', votes_user_path(u), method: :patch %>
+            </td>
           <% else %>
+            <td>
             <strong> User can see votes </strong>
             <%= button_to 'Lock', votes_user_path(u), method: :patch %>
+            </td>
           <% end %>
 
           <% if u.has_role?(:not_mitre)%>
+            <td>
             <strong> User can't see mitre reports </strong>
             <%= button_to 'Unlock', mitre_user_path(u), method: :patch %>
+            </td>
           <% else %>
+            <td>
             <strong> User can see mitre reports </strong>
             <%= button_to 'Lock', mitre_user_path(u), method: :patch %>
+            </td>
           <% end %>
         <% end %>
-      </li>
+      </tr>
     <% end %>
+    </table>
   <% end %>
 </ul>
 <%= link_to "home", root_path  %>

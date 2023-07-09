@@ -1,6 +1,8 @@
 require "rails_helper"
 
 describe "User signs in", type: :system do
+    
+    WebMock.disable_net_connect!(:allow_localhost => true)
     before :each do        
         @user1 = User.create(username: 'example1', email: 'example1@example.com', password: 'password')
         @user2 = User.create(username: 'example2', email: 'example2@example.com', password: 'password', confirmed_at: Date.today)
