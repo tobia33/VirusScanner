@@ -1,5 +1,6 @@
 require 'rails_helper'
 require 'webmock/rspec'
+require 'factories.user'
 
 RSpec.describe HashesController, type: :controller do
   describe 'POST #create' do
@@ -7,6 +8,7 @@ RSpec.describe HashesController, type: :controller do
       let(:input_hash) { '5751d5a9c55c4ba34651c183c72215263ec50a8c9162dce90cea5523d8dd42ec' }
 
       before do
+        @user = create :user
         stub_request(:get, "https://www.virustotal.com/api/v3/search?query=5751d5a9c55c4ba34651c183c72215263ec50a8c9162dce90cea5523d8dd42ec").
          with(
            headers: {
@@ -1292,24 +1294,91 @@ RSpec.describe HashesController, type: :controller do
               "self": "https://www.virustotal.com/api/v3/search?query=5751d5a9c55c4ba34651c183c72215263ec50a8c9162dce90cea5523d8dd42ec"
           }
       }', headers: {})
+      stub_request(:get, "https://www.virustotal.com/api/v3/files/5751d5a9c55c4ba34651c183c72215263ec50a8c9162dce90cea5523d8dd42ec/comments?limit=20").
+         with(
+           headers: {
+          'Accept'=>'application/json',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'Host'=>'www.virustotal.com',
+          'User-Agent'=>'Ruby',
+          'X-Apikey'=>'06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
+           }).
+         to_return(status: 200, body: '{
+            "meta": {
+              "count": 1
+            },
+            "data": [
+              {
+                "attributes": {
+                  "date": 1687776880,
+                  "text": "rook",
+                  "votes": {
+                    "positive": 0,
+                    "abuse": 0,
+                    "negative": 0
+                  },       
+                  "html": "rook",
+                  "tags": []
+                },
+                "type": "comment",
+                "id": "f-5751d5a9c55c4ba34651c183c72215263ec50a8c9162dce90cea5523d8dd42ec-91daf90c",
+                "links": {
+                  "self": "https://www.virustotal.com/api/v3/comments/f-5751d5a9c55c4ba34651c183c72215263ec50a8c9162dce90cea5523d8dd42ec-91daf90c"
+                }
+              }
+            ],
+            "links": {
+              "self": "https://www.virustotal.com/api/v3/files/5751d5a9c55c4ba34651c183c72215263ec50a8c9162dce90cea5523d8dd42ec/comments?limit=10"
+            }
+          }', headers: {})
+          stub_request(:get, "https://www.virustotal.com/api/v3/files/5751d5a9c55c4ba34651c183c72215263ec50a8c9162dce90cea5523d8dd42ec/votes?limit=40").
+         with(
+           headers: {
+          'Accept'=>'application/json',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'Host'=>'www.virustotal.com',
+          'User-Agent'=>'Ruby',
+          'X-Apikey'=>'06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
+           }).
+         to_return(status: 200, body: '{
+            "meta": {
+              "count": 1
+            },
+            "data": [
+              {
+                "attributes": {
+                  "date": 1687794377,
+                  "verdict": "harmless",
+                  "value": 1
+                },"type": "vote",
+                "id": "f-5751d5a9c55c4ba34651c183c72215263ec50a8c9162dce90cea5523d8dd42ec-802a387d",
+                "links": {
+                  "self": "https://www.virustotal.com/api/v3/votes/f-5751d5a9c55c4ba34651c183c72215263ec50a8c9162dce90cea5523d8dd42ec-802a387d"
+                }
+              }
+            ],
+            "links": {
+              "self": "https://www.virustotal.com/api/v3/files/5751d5a9c55c4ba34651c183c72215263ec50a8c9162dce90cea5523d8dd42ec/votes?limit=10"
+            }
+          }', headers: {})
       end
 
       it 'sends the hash to VirusTotal API and creates a report' do
-        post :create, params: { input_hash: input_hash }, session:{'warden.user.user.key'=> [[1, 1],1]}
 
+        post :create, params: { input_hash: input_hash }, session:{'warden.user.user.key'=> [[1, 1],1]}
         expect(assigns(:report)).to be_a(Report)
         expect(assigns(:report).sha256).not_to be_nil
         expect(assigns(:report).score).not_to be_nil
       end
       it 'redirects to the created report' do
-        post :create, params: { input_hash: input_hash }
+        post :create, params: { input_hash: input_hash }, session:{'warden.user.user.key'=> [[1, 1],1]}
         expect(response).to redirect_to(assigns(:report))
       end
     end
     context 'with an invalid input hash' do
       let(:input_hash) { 'invalid_hash' }
       before do
-        stub_request(:get, "https://www.virustotal.com/api/v3/search?query=invalidHash").
+        stub_request(:get, "https://www.virustotal.com/api/v3/search?query=invalid_hash").
          with(
            headers: {
           'Accept'=>'application/json',
