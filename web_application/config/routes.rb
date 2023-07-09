@@ -18,10 +18,10 @@ Rails.application.routes.draw do
     delete "users/:id", to: "users#destroy"
 
     get "user_unlock", to: "users#unlock"
-    
-    #get 'rescan_reports/:id', to: 'rescan_reports#show'
-    
-    
+  
+    post "comments", to: "new_comments#create"
+    post "votes", to: "new_votes#create"
+
     get 'manage_reports/download', to: 'manage_reports#download'
     get 'manage_reports/download_group', to: 'manage_reports#download_group'
 

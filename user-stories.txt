@@ -6,7 +6,6 @@ NON REGISTRATO
     [x] cercare un hash e far vedere il suo report
     [x] fare scan di URL e far vedere il report
     [x] recupero password //aggiunta il 21/06/2023
-    [ ] mail di verifica quando avviene registrazione
 
 REGISTRATO
     [x] login con google via Oauth
@@ -44,6 +43,5 @@ ADMIN
     [x] può modificare online alcuni campi dei report (score, rimozione commenti, rimozione voti)
     [x] può aggiunngere e leggere note sui report di ogni utente
     [x] non può bannare o limitare altri admin
-    [ ] ban user dopo 10 tentativi di login fallito
     [x] limita operazioni utente (rescan, vedere voti, vedere commenti, MITRE ATT&CK, behavior reports)
     [x] ripristina operazioni utente (rescan, vedere voti, vedere commenti, MITRE ATT&CK, behavior reports)

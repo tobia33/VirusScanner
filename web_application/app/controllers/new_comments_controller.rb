@@ -4,7 +4,7 @@ class NewCommentsController < ApplicationController
 
   def create
 
-    user=User.find(session[:user_id])
+    user=User.find(session["warden.user.user.key"][0]).first
     if !user.has_role?(:admin)
       redirect_to root_path
     end
