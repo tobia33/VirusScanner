@@ -1,3 +1,6 @@
+require 'uri'
+require 'net/http'
+
 class ReportsController < ApplicationController
 
   before_action :authenticate_user!

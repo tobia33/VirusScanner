@@ -26,7 +26,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
       session[:user_id] = @user.id
       redirect_to root_path, flash: { success: 'Registration successfully' }
     else
-      redirect_to new_user_registration_path, notice: "Email already exist"
+      redirect_to new_user_registration_path, notice: "Error, email already exists or some fields aren't filled correctly."
     end
   end
 

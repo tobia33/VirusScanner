@@ -2,11 +2,7 @@ NON REGISTRATO
     [x] registrarti con user e password
     [x] verifica email di registrazione
     [x] registrarti con google via Oauth
-    [x] fare upload e scan di singolo file e far vedere il report
-    [x] cercare un hash e far vedere il suo report
-    [x] fare scan di URL e far vedere il report
     [x] recupero password //aggiunta il 21/06/2023
-    [ ] mail di verifica quando avviene registrazione
 
 REGISTRATO
     [x] login con google via Oauth
@@ -14,7 +10,9 @@ REGISTRATO
     [x] mail di notifica agli admin dopo 10 tentativi falliti da parte di utente
     [x] ban user dopo 10 tentativi di login falliti (aggiunto il 24/06/2023)
     [x] login richiesto nuovamente dopo 30 minuti dall'inizio della sessione user (aggiunto il 24/06/2023)
-    [x] fare upload e scan di singolo file  più grande di 32 MB e vedere il suo report
+    [x] fare upload e scan di singolo file e far vedere il report
+    [x] cercare un hash e far vedere il suo report
+    [x] fare scan di URL e far vedere il report
     [x] fare re-scan di report
     [x] vedere commenti di un report
     [x] vedere i voti di un report
@@ -44,6 +42,5 @@ ADMIN
     [x] può modificare online alcuni campi dei report (score, rimozione commenti, rimozione voti)
     [x] può aggiunngere e leggere note sui report di ogni utente
     [x] non può bannare o limitare altri admin
-    [ ] ban user dopo 10 tentativi di login fallito
     [x] limita operazioni utente (rescan, vedere voti, vedere commenti, MITRE ATT&CK, behavior reports)
     [x] ripristina operazioni utente (rescan, vedere voti, vedere commenti, MITRE ATT&CK, behavior reports)
