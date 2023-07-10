@@ -1,7 +1,6 @@
 # file report_spec.rb
 
 require 'rails_helper'
-
 RSpec.describe Report, type: :model do
     subject { described_class.new }
         context 'Attributes' do
@@ -20,7 +19,7 @@ RSpec.describe Report, type: :model do
             it 'has score attribute' do
                 expect(subject).to respond_to(:score)
             end
-          
+
             it 'has group_id attribute' do
                 expect(subject).to respond_to(:group_id)
             end
