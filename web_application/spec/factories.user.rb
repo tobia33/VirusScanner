@@ -1,7 +1,7 @@
 require 'factories.report'
 FactoryBot.define do
     factory(:user) do
-        id {"999"}
+        id {"1"}
         username {"ezio"}
         email {"ezio@mail.it"}
         password {"Gf2ikmcdop987"}

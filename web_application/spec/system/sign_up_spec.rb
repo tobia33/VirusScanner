@@ -7,9 +7,7 @@ describe "User signs up", type: :system do
   let(:password) { Faker::Internet.password(min_length: 8) }
   let(:wrong_password) {Faker::Internet.password}
 
-  WebMock.disable_net_connect!(:allow_localhost => true)
   before do
-    WebMock.disable_net_connect!(:allow_localhost => true)
     visit new_user_registration_path
   end
 

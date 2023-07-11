@@ -15,11 +15,7 @@ class UsersController < ApplicationController
 
     def ban
         @user=User.find(params[:id])
-        if @user.access_locked?
-            @user.unlock_access!
-        else
-            @user.lock_access!
-        end
+        User.blocca(@user)
         redirect_to user_path, notice: "User bannato #{@user.access_locked?}"
     end
 

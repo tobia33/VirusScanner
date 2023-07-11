@@ -11,6 +11,14 @@ class User < ApplicationRecord
 
   #acts_as_user :roles => [ :normaluser, :admin ]
 
+  def self.blocca(user)
+    if user.access_locked?
+        user.unlock_access!
+    else
+        user.lock_access!
+    end
+  end
+
   ROLES = %i[admin normaluser not_rescan not_votes not_comments not_mitre not_behavior]
 
   def roles!(roles)

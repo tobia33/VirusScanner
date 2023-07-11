@@ -2,7 +2,6 @@ require "rails_helper"
 
 describe "User logs out", type: :system do
     
-    WebMock.disable_net_connect!(:allow_localhost => true)
     before do
         @user = User.create(id: 1000,username: 'example', email: 'example@example.com', 
                             password: 'password', created_at: Date.today ,confirmed_at: Date.today)
