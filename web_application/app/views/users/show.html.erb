@@ -12,7 +12,7 @@
           <% if u.access_locked? %>
             <td>
             <strong> Bannato </strong>
-            <%= button_to 'UnBan', ban_user_path(u), method: :patch %>
+            <%= button_to 'Sblocca', ban_user_path(u), method: :patch %>
             </td>
           <% else %>
             <td>
