@@ -1,0 +1,27 @@
+Piano dei test
+
+ban:
+
+Given user
+when sign-up successfully
+then it's not banned
+
+Given user not banned
+when is banned
+then it's banned
+
+Given user banned
+when is unbanned
+then it's not banned anymore
+
+Given user1 (admin) and user2 (not admin), user2 is unbanned
+when user1 clicks on ban user2
+then user2 is banned, and it results to user1
+
+Given user1 (admin) and user2 (not admin), user2 is banned
+when user1 clicks on sblocca user2
+then user2 is not banned anymore, and it results to user1
+
+Given user1(admin) and no users unless admins
+when user1 is on the page of users
+then there is no option to ban
