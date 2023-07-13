@@ -25,3 +25,12 @@ then user2 is not banned anymore, and it results to user1
 Given user1(admin) and no users unless admins
 when user1 is on the page of users
 then there is no option to ban
+
+
+report:
+
+Given a Report check the attributes and the foreign key are correct
+
+Given the view page of a report check it displays the correct contents
+
+Given the controller for hashes check the controller sends and receives the correct information to the VirusTotal API
