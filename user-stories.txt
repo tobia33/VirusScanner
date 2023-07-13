@@ -30,6 +30,7 @@ REGISTRATO
     [x] rimuovi report da cronologia
     [x] un utente può cancellare il proprio account //aggiunta il 21/06/2023
     [x] può aggiungere note ad un proprio report (visibili anche dall’admin)
+    [x] può modificare online alcuni campi dei propri report (score, rimozione commenti, rimozione voti)
 
 ADMIN 
     [x] remove user
