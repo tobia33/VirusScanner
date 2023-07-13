@@ -2,7 +2,7 @@
 
 <%= form_with url: "/manage_reports", method: :post, multipart: true do |form| %>
   <%= form.label :report, "Input report in json format:" %>
-  <%= form.file_field :report %>
+  <%= form.file_field :report, required: true %>
   <%= form.submit "Submit" %>
 <% end %>
 <p id="notice"><%= notice %></p>

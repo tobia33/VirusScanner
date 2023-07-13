@@ -3,7 +3,7 @@
 
 <%= form_with url: "/binaries", method: :post, multipart: true do |form| %>
   <%= form.label :binary, "Input binary:" %>
-  <%= form.file_field :binary %>
+  <%= form.file_field :binary, required: true %>
   <%= form.submit "Submit" %>
 <% end %>
 <p id="notice"><%= notice %></p>

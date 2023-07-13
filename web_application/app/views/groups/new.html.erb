@@ -2,7 +2,7 @@
 
 <%= form_with url: "/groups", method: :post, multipart: true do |form| %>
   <%= form.label :group_file, "Input group file:" %>
-  <%= form.file_field :group_file %>
+  <%= form.file_field :group_file, required: true %>
   <%= form.submit "Submit" %>
 <% end %>
 <p id="notice"><%= notice %></p>
