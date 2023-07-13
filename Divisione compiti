@@ -1,0 +1,8 @@
+Divisione compiti
+
+
+Tobia/Andrea :          report(hash, binary, url, group, download, upload), test su report.
+
+Saverio/Valerio :       user(sign-up, login, OAuth, admin, ban, limitazioni), test su user (ban) , gestione dei ruoli.
+
+Andrea, Valerio, Tobia, Saverio : Scelta User stories; Diagramma ER; Piano dei test.
