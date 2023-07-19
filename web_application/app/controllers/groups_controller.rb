@@ -33,7 +33,7 @@ class GroupsController < ApplicationController
         http.use_ssl = true
         request = Net::HTTP::Post.new(url)
         request["accept"] = 'application/json'
-        request["x-apikey"] = '06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
+        request["x-apikey"] = 'aec7480f33d4934bfe8448b447c8319ad6d3b2f113f918010e8422205dd47822'
         request["content-type"] = 'application/x-www-form-urlencoded'
         request.body = "url=#{line}"
 
@@ -56,7 +56,7 @@ class GroupsController < ApplicationController
         http.use_ssl = true
         request = Net::HTTP::Get.new(url)
         request["accept"] = 'application/json'
-        request["x-apikey"] = '06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
+        request["x-apikey"] = 'aec7480f33d4934bfe8448b447c8319ad6d3b2f113f918010e8422205dd47822'
         
         response = http.request(request)
         json_parsed = JSON.parse(response.read_body)
@@ -89,7 +89,7 @@ class GroupsController < ApplicationController
         
         request = Net::HTTP::Get.new(url)
         request["accept"] = 'application/json'
-        request["x-apikey"] = '06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
+        request["x-apikey"] = 'aec7480f33d4934bfe8448b447c8319ad6d3b2f113f918010e8422205dd47822'
         
         response = http.request(request)
         json_parsed = JSON.parse(response.read_body)
@@ -112,7 +112,7 @@ class GroupsController < ApplicationController
 
         request = Net::HTTP::Get.new(url)
         request["accept"] = 'application/json'
-        request["x-apikey"] = '06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
+        request["x-apikey"] = 'aec7480f33d4934bfe8448b447c8319ad6d3b2f113f918010e8422205dd47822'
 
         response = http.request(request)
         json_parsed = JSON.parse(response.read_body)
@@ -124,15 +124,18 @@ class GroupsController < ApplicationController
         
       else
         # send hash to VirusTotal and receive report
+   
         url = URI("https://www.virustotal.com/api/v3/search?query=#{line}")
+        
         http = Net::HTTP.new(url.host, url.port)
         http.use_ssl = true
         request = Net::HTTP::Get.new(url)
         request["accept"] = 'application/json'
-        request["x-apikey"] = '06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
-
+        request["x-apikey"] = 'aec7480f33d4934bfe8448b447c8319ad6d3b2f113f918010e8422205dd47822'
+        
         response = http.request(request)
         json_parsed = JSON.parse(response.read_body)
+
         
         # check if any report was found
         if json_parsed["data"].any?
@@ -149,8 +152,9 @@ class GroupsController < ApplicationController
             score = json_parsed["data"][0]["attributes"]["last_analysis_stats"]["malicious"]
             
             # create report
-            @report = @group.reports.create(sha256: sha256, content: response.read_body, score: score)
-
+            @report = @group.reports.create(sha256: sha256, content: response.read_body, score: score, user_id: @group["user_id"])
+            puts "================================================================="
+            puts @report  
             # send file hash and receive comments
             url = URI("https://www.virustotal.com/api/v3/files/#{sha256}/comments?limit=20")
 
@@ -159,7 +163,7 @@ class GroupsController < ApplicationController
             
             request = Net::HTTP::Get.new(url)
             request["accept"] = 'application/json'
-            request["x-apikey"] = '06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
+            request["x-apikey"] = 'aec7480f33d4934bfe8448b447c8319ad6d3b2f113f918010e8422205dd47822'
             
             response = http.request(request)
             json_parsed = JSON.parse(response.read_body)
@@ -177,7 +181,7 @@ class GroupsController < ApplicationController
 
             request = Net::HTTP::Get.new(url)
             request["accept"] = 'application/json'
-            request["x-apikey"] = '06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
+            request["x-apikey"] = 'aec7480f33d4934bfe8448b447c8319ad6d3b2f113f918010e8422205dd47822'
 
             response = http.request(request)
             json_parsed = JSON.parse(response.read_body)

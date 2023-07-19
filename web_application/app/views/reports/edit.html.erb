@@ -4,7 +4,7 @@
   <%= form.label :score, "change score:" %>
   <%= form.number_field :score, in: 1..100 %>
   <%= form.hidden_field :id, value: "#{params["id"]}" %>
-  <%= form.submit "Submit comment" %>
+  <%= form.submit "Submit" %>
 <% end %>
 
 <% if !current_user.has_role?(:not_comments) %>

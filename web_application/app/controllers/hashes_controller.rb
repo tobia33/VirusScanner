@@ -9,7 +9,7 @@ class HashesController < ApplicationController
     http.use_ssl = true
     request = Net::HTTP::Get.new(url)
     request["accept"] = 'application/json'
-    request["x-apikey"] = '06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
+    request["x-apikey"] = 'aec7480f33d4934bfe8448b447c8319ad6d3b2f113f918010e8422205dd47822'
 
     response = http.request(request)
     json_parsed = JSON.parse(response.read_body)
@@ -46,7 +46,7 @@ class HashesController < ApplicationController
         
         request = Net::HTTP::Get.new(url)
         request["accept"] = 'application/json'
-        request["x-apikey"] = '06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
+        request["x-apikey"] = 'aec7480f33d4934bfe8448b447c8319ad6d3b2f113f918010e8422205dd47822'
         
         response = http.request(request)
         json_parsed = JSON.parse(response.read_body)
@@ -64,7 +64,7 @@ class HashesController < ApplicationController
 
         request = Net::HTTP::Get.new(url)
         request["accept"] = 'application/json'
-        request["x-apikey"] = '06066e396a57d2206a53847e115ace8c42e1c024af45131051e700af1919fccf'
+        request["x-apikey"] = 'aec7480f33d4934bfe8448b447c8319ad6d3b2f113f918010e8422205dd47822'
 
         response = http.request(request)
         json_parsed = JSON.parse(response.read_body)
